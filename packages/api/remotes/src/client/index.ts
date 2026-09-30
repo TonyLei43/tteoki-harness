@@ -2,6 +2,7 @@
 
 import type { Context } from '@deepseek-ai/cordis'
 import agentPresetsRemote from '@deepseek-ai/dsh-agent-preset-registry/remote'
+import agentModelsRemote from '@deepseek-ai/dsh-agent-models/remote'
 import pricesRemote from '@deepseek-ai/dsh-prices/remote'
 import commandsRemote from '@deepseek-ai/dsh-commands/remote'
 import accountRemote from '@deepseek-ai/dsh-api-account-controller/remote'
@@ -38,6 +39,10 @@ export type {} from '@deepseek-ai/dsh-plugin-manager/remote'
 export type {} from '@deepseek-ai/dsh-client-ui-plugin-manager/remote'
 export type { PluginInventorySnapshot } from '@deepseek-ai/dsh-host-plugin-inventory/types'
 export type {} from '@deepseek-ai/dsh-agent-preset-registry/remote'
+export type {} from '@deepseek-ai/dsh-agent-models/remote'
+export type {
+  AgentModelBinding, AgentModelsValue, AgentModelSetRequest,
+} from '@deepseek-ai/dsh-agent-models'
 export type {} from '@deepseek-ai/dsh-prices/remote'
 // The prices namespace's wire vocabulary, so the Web page names this assembly
 // alone. Values never ride it; the generated methods return plain JSON.
@@ -183,7 +188,7 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
   const disposers: Array<() => Promise<void>> = []
   try {
     for (const contribution of [
-      agentPresetsRemote, pricesRemote, commandsRemote, settingsControllerRemote, accountRemote, goalsRemote, llmRemote, dynamicRemote, scheduleRemote,
+      agentPresetsRemote, agentModelsRemote, pricesRemote, commandsRemote, settingsControllerRemote, accountRemote, goalsRemote, llmRemote, dynamicRemote, scheduleRemote,
       pluginInventoryRemote, pluginManagerRemote, pluginRegistryProbeRemote, messageFeedbackRemote, sessionFeedbackRemote,
       fileUploadsRemote, sessionReferencesRemote,
       permissionPresetsRemote, subagentsRemote, sessionRemote, jobRemote, workspaceRemote, workspaceFilesRemote, terminalRemote,

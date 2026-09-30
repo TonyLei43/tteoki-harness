@@ -1758,6 +1758,7 @@ export const CLIENT_SLOT_API: readonly ClientSlotEntry[] = [
     declaredBy: 'an entry in \'root\' (client-ui-layout), so it exists while that entry is mounted',
     occupants: [
       'client-ui-conversation ConversationPanel key \'conversation\'',
+      'client-ui-orchestrator OrchestratorBoard',
       'client-ui-plugin-manager PluginManagerPage',
       'client-ui-prices PricesBoard',
       'client-ui-schedule TaskManagerPage',
@@ -2690,6 +2691,7 @@ export const CLIENT_SLOT_API: readonly ClientSlotEntry[] = [
     declaredBy: 'an entry in \'sidebar.settings\' (client-ui-settings-general), so it exists while that entry is mounted',
     occupants: [
       'client-ui-agent-preset AgentPresetSection id \'agent-presets\'',
+      'client-ui-agents AgentsSection id \'agents\'',
       'client-ui-prices PricesSection',
       'client-ui-settings-account AccountSection id \'account\'',
       'client-ui-settings-general GeneralSection id \'general\'',
@@ -3079,6 +3081,7 @@ export const CLIENT_SLOT_API: readonly ClientSlotEntry[] = [
     slotInject: '',
     declaredBy: 'an entry in \'sidebar\' (client-ui-sidebar), so it exists while that entry is mounted',
     occupants: [
+      'client-ui-orchestrator OrchestratorPanelIcon',
       'client-ui-plugin-manager PluginsPanelIcon',
       'client-ui-prices PricesPanelIcon',
       'client-ui-schedule TaskManagerIcon',

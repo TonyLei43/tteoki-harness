@@ -1,0 +1,143 @@
+/* Orchestrator board: a scrollable column of project groups above which one
+ * prominent auto-router input routes free-form text to the best target. */
+.board {
+  /* The board scrolls over the elevated surface the router input draws on, so
+   * the scrollbar rebinds to the l2 thumb pair. */
+  --dsh-scrollbar-thumb: var(--dsw-alias-scrollbar-bg-l2);
+  --dsh-scrollbar-thumb-hover: var(--dsw-alias-scrollbar-hover-l2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  padding: 20px 24px;
+}
+
+.heading {
+  color: var(--dsw-alias-label-primary);
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+}
+
+.intro,
+.notice {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.notice[role='alert'] {
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.router {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.routerInput {
+  background: var(--dsw-specific-input-major);
+  border: 0.5px solid var(--dsw-alias-border-l2);
+  border-radius: 8px;
+  color: var(--dsw-alias-label-primary);
+  flex: 1;
+  font-size: 13px;
+  padding: 7px 10px;
+}
+
+.routerSend {
+  background: var(--dsw-alias-button-primary-fill);
+  border: 0;
+  border-radius: 8px;
+  color: var(--dsw-alias-label-primary-foreground);
+  cursor: pointer;
+  flex: none;
+  font-size: 13px;
+  padding: 7px 14px;
+}
+
+.routerSend:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.routed {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.groupName {
+  color: var(--dsw-alias-label-caption);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0 0 6px;
+}
+
+.rows {
+  border: 0.5px solid var(--dsw-alias-border-l1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rowButton {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 8px 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.rowButton:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.rowMain {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rowTitle {
+  color: var(--dsw-alias-label-primary);
+  font-size: 13px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowMeta {
+  color: var(--dsw-alias-label-caption);
+  font-size: 11px;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

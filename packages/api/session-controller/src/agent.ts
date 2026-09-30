@@ -15,6 +15,7 @@ import { SessionQueryError, type SessionObservation } from '@deepseek-ai/dsh-ses
 import { RemoteError } from '@deepseek-ai/dsh-typert-protocol'
 import type {} from '@deepseek-ai/dsh-typert-registry'
 import type { ModelSelection } from './types.ts'
+import { resolveAgentSelection } from './agent-models.ts'
 
 /** Cold Session identity absent from persistence. */
 export class ApiSessionNotFound extends Error {}
@@ -290,12 +291,19 @@ export class ApiSessionAgentController {
     let picked = projectionState.pending === null
       ? undefined
       : agentModelSelection(projectionState.pending)
-    const defaultModel = this.ctx.agentDefaultModel
+    const owner = this
     const selection: InstalledSelection = {
       get current(): AgentModelSelection {
         if (picked !== undefined) return picked
         const loggedHeader = agent.session.requestHeader()
-        if (loggedHeader === undefined) return defaultModel.currentSelection()
+        if (loggedHeader === undefined) {
+          const route = resolveAgentSelection(owner.ctx, owner.presetForSession(agent.session))
+          return {
+            provider: route.provider,
+            model: route.model,
+            ...route.reasoningEffort === undefined ? {} : { reasoningEffort: ReasoningEffortId(route.reasoningEffort) },
+          }
+        }
         const logged = loggedHeader.config
         return {
           provider: logged.provider,
@@ -436,7 +444,7 @@ export class ApiSessionAgentController {
     }
     return (await this.ctx.agents.resume({
       resumeSessionId: sessionId,
-      agentOptions: this.agentOptions(),
+      agentOptions: this.agentOptions(composition.agentPreset),
       setup: composition.setup,
     })).agent
   }
@@ -468,7 +476,7 @@ export class ApiSessionAgentController {
         const composition = await this.composeAgent(storedPreset)
         return (await this.ctx.agents.resume({
           resumeSessionId: sessionId,
-          agentOptions: this.agentOptions(),
+          agentOptions: this.agentOptions(composition.agentPreset),
           setup: composition.setup,
         })).agent
       } catch (error: unknown) {
@@ -485,7 +493,7 @@ export class ApiSessionAgentController {
     const composition = await this.composeAgent(presetId)
     return (await this.ctx.agents.create({
       sessionId,
-      agentOptions: this.agentOptions(),
+      agentOptions: this.agentOptions(composition.agentPreset),
       meta: {
         cwd,
         ...(composition.agentPreset === undefined ? {} : { agentPreset: composition.agentPreset }),
@@ -494,8 +502,8 @@ export class ApiSessionAgentController {
     })).agent
   }
 
-  private agentOptions(): AgentOptions {
-    const { provider, model } = this.ctx.agentDefaultModel.currentSelection()
+  private agentOptions(preset: string | undefined): AgentOptions {
+    const { provider, model } = resolveAgentSelection(this.ctx, preset)
     return { provider, model }
   }
 

@@ -1,4 +1,14 @@
 {
+  "ui-agents/src/client/AgentsSection.module.css": [
+    ".item: border-radius: 10px",
+    ".select: border-radius: 8px"
+  ],
+  "ui-orchestrator/src/client/OrchestratorBoard.module.css": [
+    ".routerInput: border-radius: 8px",
+    ".routerSend: border-radius: 8px",
+    ".rows: border-radius: 10px",
+    ".rowButton: border-radius: 8px"
+  ],
   "ui-prices/src/client/PricesBoard.module.css": [
     ".clock: border-radius: 12px",
     ".input: border-radius: 8px",

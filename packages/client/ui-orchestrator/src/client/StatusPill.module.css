@@ -1,0 +1,89 @@
+/* One status pill: the palette maps each state onto theme tokens, and only
+ * `running` animates. Geometry is fixed; the render site positions the pill. */
+.pill {
+  align-items: center;
+  border-radius: 999px;
+  corner-shape: round;
+  display: inline-flex;
+  flex: none;
+  font-size: 11px;
+  font-weight: 500;
+  gap: 5px;
+  line-height: 17px;
+  max-width: 100%;
+  padding: 1px 8px 1px 7px;
+  white-space: nowrap;
+}
+
+.dot {
+  background: currentColor;
+  border-radius: 50%;
+  corner-shape: round;
+  flex: none;
+  height: 6px;
+  width: 6px;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail {
+  color: inherit;
+  opacity: 0.75;
+}
+
+/* State palettes. `needs-feedback` and `done` tint their own primary for the
+ * fill (the ui-primitives Tag ratio), so palette changes move fill and text
+ * together; `error` inverts: solid danger fill under the foreground label. */
+.pill[data-state='running'] {
+  background: var(--dsw-alias-state-business-tertiary);
+  color: var(--dsw-alias-state-business-primary);
+}
+
+.pill[data-state='retrying'] {
+  background: var(--dsw-alias-state-warn-tertiary);
+  color: var(--dsw-alias-state-warn-label);
+}
+
+.pill[data-state='needs-feedback'] {
+  background: color-mix(in srgb, var(--dsw-alias-state-error-primary) 10%, transparent);
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.pill[data-state='idle'] {
+  background: var(--dsw-alias-bg-module-platform);
+  color: var(--dsw-alias-state-idle-primary);
+}
+
+.pill[data-state='done'] {
+  background: color-mix(in srgb, var(--dsw-alias-state-success-primary) 10%, transparent);
+  color: var(--dsw-alias-state-success-primary);
+}
+
+.pill[data-state='error'] {
+  background: var(--dsw-alias-state-error-primary);
+  color: var(--dsw-alias-label-primary-foreground);
+}
+
+@keyframes dsh-orchestrator-pill-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.pill[data-state='running'] .dot {
+  animation: dsh-orchestrator-pill-pulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill[data-state='running'] .dot {
+    animation-name: none;
+  }
+}
