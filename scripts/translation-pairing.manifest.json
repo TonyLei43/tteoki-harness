@@ -13,8 +13,10 @@
     "packages/client/ui-memory/",
     "packages/client/ui-orchestrator/",
     "packages/client/ui-prices/",
+    "packages/client/ui-skills/",
     "packages/external/",
     "packages/memory/",
-    "packages/preset/agent-models/"
+    "packages/preset/agent-models/",
+    "packages/skill/skill-sets/"
   ]
 }

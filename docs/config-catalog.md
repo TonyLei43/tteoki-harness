@@ -3000,6 +3000,28 @@ export interface Config {
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-skill-office -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-skill-sets -->
+<a id="deepseek-aidsh-skill-sets"></a>
+
+## `@deepseek-ai/dsh-skill-sets`
+
+- `source`: [`packages/skill/skill-sets/src/index.ts:37`](../packages/skill/skill-sets/src/index.ts)
+
+```ts config-catalog
+/** Installer deployment policy. */
+export interface Config {
+  /** pnpm executable name or path; defaults to `pnpm`. */
+  readonly pnpmCommand?: string
+  /** Registry the install asks first, as an http(s) URL. */
+  readonly registry?: string
+  /** Bound on one package-manager run in milliseconds. */
+  readonly timeoutMs?: number
+  /** Harness home override; defaults to the resolved DSH home. */
+  readonly home?: string
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-skill-sets -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-spill-local -->
 <a id="deepseek-aidsh-spill-local"></a>
 
@@ -4484,6 +4506,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-ui-sidebar-right` | — | [`packages/client/ui-sidebar-right/src/index.ts`](../packages/client/ui-sidebar-right/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-sidebar-terminal` | — | [`packages/client/ui-sidebar-terminal/src/index.ts`](../packages/client/ui-sidebar-terminal/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-skill` | — | [`packages/client/ui-skill/src/index.ts`](../packages/client/ui-skill/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-skills` | — | [`packages/client/ui-skills/src/index.ts`](../packages/client/ui-skills/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-subagent` | — | [`packages/client/ui-subagent/src/index.ts`](../packages/client/ui-subagent/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-tool` | — | [`packages/client/ui-tool/src/index.ts`](../packages/client/ui-tool/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-trajectory` | — | [`packages/client/ui-trajectory/src/index.ts`](../packages/client/ui-trajectory/src/index.ts) |

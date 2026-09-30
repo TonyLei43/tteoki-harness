@@ -2378,6 +2378,13 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         returns: 'user-invocable skill metadata without loading skill bodies.',
         throws: ['RemoteError when the Session cannot be inspected or no registry can serve it.'],
       },
+      {
+        signature: '@Remote async inventory(): Promise<SkillInventoryValue>',
+        description: 'List every skill in the host layer, including model-only skills, for management surfaces that are not bound to one Session.',
+        parameters: [],
+        returns: 'the host composition\'s installed skill inventory.',
+        throws: ['RemoteError when no skill registry is mounted.'],
+      },
     ],
   },
   {
@@ -6944,6 +6951,14 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'SkillEntry',
     declaration: 'export interface SkillEntry {\n    readonly path?: string;\n    readonly name: string;\n    readonly description: string;\n    readonly whenToUse?: string;\n    readonly modelInvocable: boolean;\n}',
+  },
+  {
+    name: 'SkillInventoryEntry',
+    declaration: 'export interface SkillInventoryEntry {\n    readonly path?: string;\n    readonly name: string;\n    readonly description: string;\n    readonly whenToUse?: string;\n    readonly source: string;\n    readonly provider: string;\n    readonly modelInvocable: boolean;\n    readonly userInvocable: boolean;\n}',
+  },
+  {
+    name: 'SkillInventoryValue',
+    declaration: 'export interface SkillInventoryValue {\n    readonly skills: readonly SkillInventoryEntry[];\n}',
   },
   {
     name: 'SkillInvocationPolicy',
