@@ -74,6 +74,40 @@
   overflow: hidden;
 }
 
+/* The main panel fills the centre between the optional tab and status rows. */
+.centerBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.centerBody > * {
+  flex: 1;
+  min-height: 0;
+}
+
+.shellTabs,
+.shellStatus {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.shellTabs:empty,
+.shellStatus:empty {
+  display: none;
+}
+
+.shellTabs {
+  border-bottom: 0.5px solid var(--dsw-alias-border-l2);
+  padding-left: var(--dsh-frame-leading-clearance, 0px);
+}
+
+.shellStatus {
+  border-top: 0.5px solid var(--dsw-alias-border-l2);
+}
+
 /* macOS desktop: the frame goes transparent so window vibrancy reaches the
    sidebar column, which keeps only a translucent tint; the centre paints the
    base background itself to stay opaque. The sidebar/centre separator moves

@@ -19,7 +19,7 @@
 import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import {
-  FishLogo, IconNewChatOutlineMedium, IconNewChatOutlineRegular, IconPanelLeftOutlineRegular, isDarwinDesktop, ShortcutKeys, Tooltip,
+  FishLogo, IconChevronDownOutlineRegular, IconChevronRightOutlineRegular, IconEllipsisOutlineRegular, IconNewChatOutlineMedium, IconNewChatOutlineRegular, IconPanelLeftOutlineRegular, isDarwinDesktop, ShortcutKeys, Tooltip,
 } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { InjectFace, PropsRenderSlots, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type {
@@ -77,6 +77,45 @@ function PanelRow({ id, label, wide, usePanelInfo, selectPanel, renderSlot }: Pa
         )}
       </button>
     </Tooltip>
+  )
+}
+
+type OthersGroupProps =
+  Omit<PanelRowProps, 'id' | 'label'>
+  & { panels: readonly SidebarPanelMetadata[]; label: string }
+
+/**
+ * The Others row and, while open, the panel rows folded under it. The group
+ * opens by itself while one of its panels is the active panel.
+ */
+function OthersGroup({ panels, label, wide, usePanelInfo, selectPanel, renderSlot }: OthersGroupProps) {
+  const holdsActive = usePanelInfo(info => panels.some(panel => panel.id === info.activePanelId))
+  const [open, setOpen] = useState(false)
+  const expanded = open || holdsActive
+  const Chevron = expanded ? IconChevronDownOutlineRegular : IconChevronRightOutlineRegular
+  return (
+    <>
+      <Tooltip label={label} delayMs={500} disabled={wide}>
+        <button
+          type="button"
+          className={css.panelRow}
+          aria-label={label}
+          aria-expanded={expanded}
+          onClick={() => { setOpen(!expanded) }}
+        >
+          <span className={css.panelGlyph} aria-hidden="true"><IconEllipsisOutlineRegular size={wide ? 16 : 18} /></span>
+          {wide && <span className={clsx(css.panelTitle, css.wide)}>{label}</span>}
+          {wide && <span className={css.othersChevron} aria-hidden="true"><Chevron size={14} /></span>}
+        </button>
+      </Tooltip>
+      {expanded && (
+        <div className={clsx(css.othersList, wide && css.othersIndented)} role="group" aria-label={label}>
+          {panels.map(({ id, label: rowLabel }) => (
+            <PanelRow key={id} id={id} label={rowLabel} wide={wide} usePanelInfo={usePanelInfo} selectPanel={selectPanel} renderSlot={renderSlot} />
+          ))}
+        </div>
+      )}
+    </>
   )
 }
 
@@ -280,7 +319,7 @@ export function SidebarRoot({
 
       {panels.length > 0 && (
         <nav className={css.panelList} aria-label={t('panels.label')}>
-          {panels.map(({ id, label }) => (
+          {panels.filter(panel => !panel.grouped).map(({ id, label }) => (
             <PanelRow
               key={id}
               id={id}
@@ -291,6 +330,16 @@ export function SidebarRoot({
               renderSlot={renderSlot}
             />
           ))}
+          {panels.some(panel => panel.grouped) && (
+            <OthersGroup
+              panels={panels.filter(panel => panel.grouped)}
+              label={t('panels.others')}
+              wide={wide}
+              usePanelInfo={usePanelInfo}
+              selectPanel={selectPanel}
+              renderSlot={renderSlot}
+            />
+          )}
         </nav>
       )}
 

@@ -33,7 +33,7 @@ function operationsOf(state: Omit<AccountView, 'links'>, details?: Partial<Accou
       theme: { getSnapshot: () => themeOf('light'), subscribe: () => () => {} },
     },
     hasRunningAccountTasks: vi.fn(async () => false),
-    contactUs: vi.fn(), showLogin: vi.fn(), setOnboarding: vi.fn(),
+    showLogin: vi.fn(), setOnboarding: vi.fn(),
     bonusNoticeShown: vi.fn(), bonusNoticeDismissed: vi.fn(),
     refreshAccount: vi.fn(() => Promise.resolve()),
     start: vi.fn(() => Promise.resolve()), cancel: vi.fn(() => Promise.resolve()), signOut: vi.fn(() => Promise.resolve()),
@@ -129,14 +129,10 @@ it.each([en, zh].flatMap(copy => ([false, true, 'unknown'] as const).map(running
     useTheme={selector => selector(operations.hooks.theme.getSnapshot())} wide openOnboarding={() => {}} openSettings={openSettings}
     t={key => key in copy ? copy[key as AccountKey] : key} />)
   fireEvent.click(screen.getByRole('button', { name: copy.menu }))
-  expect(screen.getAllByRole('menuitem').map(item => item.textContent)).toEqual([copy.settings, copy.contactUs, copy.signOut])
+  expect(screen.getAllByRole('menuitem').map(item => item.textContent)).toEqual([copy.settings, copy.signOut])
   await expect(`${screen.getByRole('menu').textContent}\n`).toMatchFileSnapshot(`./expected/menu-${copy === en ? 'en' : 'zh'}.txt`)
   fireEvent.click(screen.getByRole('menuitem', { name: copy.settings }))
   expect(openSettings).toHaveBeenCalledOnce()
-  fireEvent.click(screen.getByRole('button', { name: copy.menu }))
-  fireEvent.click(screen.getByRole('menuitem', { name: copy.contactUs }))
-  expect(operations.contactUs).toHaveBeenCalledOnce()
-  expect(screen.queryByRole('menu')).toBeNull()
   fireEvent.click(screen.getByRole('button', { name: copy.menu }))
   await act(async () => { fireEvent.click(screen.getByRole('menuitem', { name: copy.signOut })) })
   expect(signOut).not.toHaveBeenCalled()
@@ -175,7 +171,7 @@ it.each([en, zh])('updates the Settings menu keycaps and accessible combination 
   expect(props.openSettings).toHaveBeenCalledOnce()
 })
 
-it.each([en, zh])('offers settings, contact and sign-in from the signed-out account menu', async (copy) => {
+it.each([en, zh])('offers settings and sign-in from the signed-out account menu', async (copy) => {
   const openSettings = vi.fn()
   const operations = operationsOf({ status: 'signed-out', attempt: null })
   const { AccountMenu } = await import('../src/client/AccountMenu.tsx')
@@ -184,16 +180,12 @@ it.each([en, zh])('offers settings, contact and sign-in from the signed-out acco
     useTheme={selector => selector(operations.hooks.theme.getSnapshot())} wide openOnboarding={() => {}} openSettings={openSettings}
     t={key => key in copy ? copy[key as AccountKey] : key} />)
   const trigger = screen.getByRole('button', { name: copy.menu })
-  expect(trigger.textContent).toBe(copy.more)
-  expect(trigger.querySelector('svg')).not.toBeNull()
+  expect(trigger.textContent).toContain('Tony Lei')
   fireEvent.click(trigger)
-  expect(screen.getAllByRole('menuitem').map(item => item.textContent)).toEqual([copy.settings, copy.contactUsSignedOut, copy.signIn])
+  expect(screen.getAllByRole('menuitem').map(item => item.textContent)).toEqual([copy.settings, copy.signIn])
   await expect(`${screen.getByRole('menu').textContent}\n`).toMatchFileSnapshot(`./expected/menu-signed-out-${copy === en ? 'en' : 'zh'}.txt`)
   fireEvent.click(screen.getByRole('menuitem', { name: copy.settings }))
   expect(openSettings).toHaveBeenCalledOnce()
-  fireEvent.click(screen.getByRole('button', { name: copy.menu }))
-  fireEvent.click(screen.getByRole('menuitem', { name: copy.contactUsSignedOut }))
-  expect(operations.contactUs).toHaveBeenCalledOnce()
 })
 
 it('reports a failed start in the login dialog, not as a sidebar alert', async () => {
@@ -382,14 +374,9 @@ it.each(['usage', 'top-up'] as const)('shows an accessible spinner until %s fini
 })
 
 
-it.each([
-  ['Preferred name', '138****0000', 'Preferred name'],
-  [null, '138****0000', '138****0000'],
-  [null, 'u***@example.com', 'u***@example.com'],
-  [null, null, en.signedIn],
-])('uses the sidebar profile label %s / %s', async (name, contact, expected) => {
+it('shows the default owner name when no local profile is set', async () => {
   const operations = mount({ status: 'credential-stored', attempt: null }, en, {
-    profile: { status: 'ready', value: { id: null, name, contact } },
+    profile: { status: 'ready', value: { id: null, name: 'Preferred name', contact: '138****0000' } },
   })
   cleanup()
   const { AccountMenu } = await import('../src/client/AccountMenu.tsx')
@@ -397,10 +384,11 @@ it.each([
     useAccount={selector => selector(operations.hooks.account.getSnapshot())}
     useTheme={selector => selector(operations.hooks.theme.getSnapshot())}
     wide openSettings={() => {}} openOnboarding={() => {}} t={key => en[key as AccountKey]} />)
-  expect(screen.getByRole('button', { name: en.menu }).textContent).toBe(expected)
+  const trigger = screen.getByRole('button', { name: en.menu })
+  expect(trigger.textContent).toContain('Tony Lei')
 })
 
-it('shows the profile image in settings and the sidebar, with independent load-error fallbacks', async () => {
+it('shows the profile image in settings with a load-error fallback', async () => {
   const operations = mount({ status: 'credential-stored', attempt: null }, en, {
     profile: { status: 'ready', value: { id: null, name: 'User', contact: null, avatarUrl: 'https://example.test/avatar.png' } },
   })
@@ -410,7 +398,7 @@ it('shows the profile image in settings and the sidebar, with independent load-e
     useTheme={selector => selector(operations.hooks.theme.getSnapshot())}
     wide openSettings={() => {}} openOnboarding={() => {}} t={key => en[key as AccountKey]} />)
   const images = document.querySelectorAll('img')
-  expect(images).toHaveLength(2)
+  expect(images).toHaveLength(1)
   for (const image of images) {
     expect(image.getAttribute('src')).toBe('https://example.test/avatar.png')
     const parent = image.parentElement!
@@ -581,7 +569,7 @@ it('dismisses a collapsed menu and hands its login dialog to the API-key onboard
     useTheme: <T,>(select: (value: ThemeSnapshot) => T) => select(operations.hooks.theme.getSnapshot()),
     t: (key: string) => en[key as AccountKey] }
   const view = render(<AccountMenu {...props} />)
-  expect(screen.getByRole('button', { name: en.menu }).textContent).toBe('')
+  expect(screen.getByRole('button', { name: en.menu }).textContent).toContain('T')
   fireEvent.click(screen.getByRole('button', { name: en.menu }))
   fireEvent.keyDown(document, { key: 'Escape' })
   expect(screen.queryByRole('menu')).toBeNull()
@@ -706,4 +694,42 @@ it.each([en, zh])('shows live model sign-in guidance without replaying it after 
   expect(unsubscribe).toHaveBeenCalledOnce()
   render(element)
   expect(screen.queryByRole('alert')).toBeNull()
+})
+
+it('shows the local profile avatar and name in the sidebar launcher', async () => {
+  const operations = mount({ status: 'signed-out', attempt: null }, en)
+  cleanup()
+  const { AccountMenu } = await import('../src/client/AccountMenu.tsx')
+  render(<AccountMenu {...({} as GlobalStandardProps)} {...operations} settingsOpen={false}
+    useAccount={selector => selector(operations.hooks.account.getSnapshot())}
+    useTheme={selector => selector(operations.hooks.theme.getSnapshot())}
+    wide openSettings={() => {}} openOnboarding={() => {}} t={key => en[key as AccountKey]} />)
+  localStorage.setItem('dsh.profile.name', 'Tony Lei')
+  localStorage.setItem('dsh.profile.avatar', 'data:image/png;base64,AAAA')
+  dispatchEvent(new Event('dsh-profile-change'))
+  const trigger = screen.getByRole('button', { name: en.menu })
+  await vi.waitFor(() => { expect(trigger.querySelector('img')?.getAttribute('src')).toBe('data:image/png;base64,AAAA') })
+  expect(screen.getByText('Tony Lei')).toBeTruthy()
+  localStorage.clear()
+  dispatchEvent(new Event('dsh-profile-change'))
+})
+
+it('shows the name initial when only a local name is set, and tolerates unavailable storage', async () => {
+  const operations = mount({ status: 'signed-out', attempt: null }, en)
+  cleanup()
+  const { AccountMenu } = await import('../src/client/AccountMenu.tsx')
+  render(<AccountMenu {...({} as GlobalStandardProps)} {...operations} settingsOpen={false}
+    useAccount={selector => selector(operations.hooks.account.getSnapshot())}
+    useTheme={selector => selector(operations.hooks.theme.getSnapshot())}
+    wide openSettings={() => {}} openOnboarding={() => {}} t={key => en[key as AccountKey]} />)
+  localStorage.setItem('dsh.profile.name', 'Tony Lei')
+  dispatchEvent(new Event('dsh-profile-change'))
+  await vi.waitFor(() => { expect(screen.getByRole('button', { name: en.menu }).textContent).toContain('T') })
+
+  const get = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('no storage') })
+  dispatchEvent(new Event('dsh-profile-change'))
+  await vi.waitFor(() => { expect(screen.getByRole('button', { name: en.menu }).textContent).toContain('Tony Lei') })
+  get.mockRestore()
+  localStorage.clear()
+  dispatchEvent(new Event('dsh-profile-change'))
 })

@@ -9,7 +9,7 @@ import { apply, inject } from '@deepseek-ai/dsh-client-ui-sidebar/client'
 import type { SidebarRootInjected } from '@deepseek-ai/dsh-client-ui-sidebar/client'
 import type { MainPanelId } from '@deepseek-ai/dsh-client-ui-layout/client'
 import { HeaderLeadingControls } from '../src/client/HeaderLeadingControls.tsx'
-import { apply as hostApply } from '../src/index.ts'
+import { apply as hostApply, Config as HostConfig } from '../src/index.ts'
 
 const owners = new Set<Fiber>()
 afterEach(async () => {
@@ -53,8 +53,15 @@ async function bench(declare = true) {
 }
 
 describe('ui-sidebar apply', () => {
-  it('keeps the host Loader entry inert', () => {
-    expect(hostApply).not.toThrow()
+  it('publishes the Others setting through the Host settings service', async () => {
+    expect(() => HostConfig({ others: ['agenda'] })).not.toThrow()
+    const ctx = new Context()
+    const configure = vi.fn(() => () => {})
+    ctx.provide('settings', { configure } as never)
+    const fiber = ctx.plugin({ apply: hostApply })
+    await fiber.await()
+    await vi.waitFor(() => { expect(configure).toHaveBeenCalledWith({ auto: false }, expect.anything()) })
+    await fiber.dispose()
   })
 
   it('declares only the services it uses', () => {
@@ -128,7 +135,7 @@ describe('ui-sidebar apply', () => {
       await panel.await()
       await vi.waitFor(() => {
         expect(injected.hooks.panels.getSnapshot()).toEqual([
-          { id: 'custom-panel', order: 20, label: 'Custom panel' },
+          { id: 'custom-panel', order: 20, label: 'Custom panel', grouped: false },
         ])
       })
       expect(b.slots.entries('main').map(entry => entry.options.key)).toEqual(['custom-panel'])
@@ -137,6 +144,36 @@ describe('ui-sidebar apply', () => {
       expect(b.slots.entries('main')).toEqual([])
     } finally {
       await panel.dispose()
+      await sidebar.dispose()
+    }
+  })
+
+  it('folds the configured panels under Others', async () => {
+    const b = await bench()
+    let listener = (): void => {}
+    let others = ['agenda']
+    b.ctx.provide('configForms', {
+      get: () => ({ getSnapshot: () => ({ value: { others } }), subscribe: (next: () => void) => { listener = next; return () => {} } }),
+    } as never)
+    const sidebar = b.ctx.plugin({ inject: [...inject], apply })
+    await sidebar.await()
+    const injected = (b.slots.entries('sidebar')[0]!.inject as () => SidebarRootInjected)()
+    const disposeAgenda = b.slots.register({ name: 'sidebar.panellist', id: 'agenda', order: 12, label: 'Agenda' }, () => null)
+    const disposeHome = b.slots.register({ name: 'sidebar.panellist', id: 'home', order: -10, label: 'Home' }, () => null)
+    try {
+      await vi.waitFor(() => {
+        expect(injected.hooks.panels.getSnapshot()).toEqual([
+          { id: 'home', order: -10, label: 'Home', grouped: false },
+          { id: 'agenda', order: 12, label: 'Agenda', grouped: true },
+        ])
+      })
+      // A settings change regroups the rows.
+      others = []
+      listener()
+      expect(injected.hooks.panels.getSnapshot().map(panel => panel.grouped)).toEqual([false, false])
+    } finally {
+      disposeAgenda()
+      disposeHome()
       await sidebar.dispose()
     }
   })

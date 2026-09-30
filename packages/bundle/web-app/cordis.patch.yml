@@ -316,6 +316,10 @@
     - id: ui-brand-official
       name: '@deepseek-ai/dsh-client-ui-brand-official'
 
+    # Deployment skin: product brand occupants and the accent token palette.
+    - id: ui-skin
+      name: '@deepseek-ai/dsh-client-ui-skin'
+
     - id: ui-attachment
       name: '@deepseek-ai/dsh-client-ui-attachment'
 
@@ -370,6 +374,12 @@
     - id: ui-orchestrator
       name: '@deepseek-ai/dsh-client-ui-orchestrator'
 
+    # Parallel runs: one prompt fanned out to agents in separate git
+    # worktrees, lane diffs with review comments, and merge of the chosen lane
+    # over the worktrees Remote namespace mounted above.
+    - id: ui-parallel-runs
+      name: '@deepseek-ai/dsh-client-ui-parallel-runs'
+
     # Home dashboard under the blank-session composer; widgets register
     # through the dashboard.widget slot.
     - id: ui-dashboard
@@ -391,10 +401,19 @@
     - id: ui-knowledge-sources
       name: '@deepseek-ai/dsh-client-ui-knowledge-sources'
 
+    # Orca-style workbench chrome: open-session tabs above the centre column
+    # and a status bar below it, over the connectors and memory namespaces.
+    - id: ui-workbench
+      name: '@deepseek-ai/dsh-client-ui-workbench'
+
     # Prices page: the off-peak clock, the DeepSeek table, and the OpenRouter
     # catalog over the prices Remote namespace mounted above.
     - id: ui-prices
       name: '@deepseek-ai/dsh-client-ui-prices'
+
+    # Profile settings section: local display name and avatar.
+    - id: ui-profile
+      name: '@deepseek-ai/dsh-client-ui-profile'
 
     - id: ui-subagent
       name: '@deepseek-ai/dsh-client-ui-subagent'
@@ -616,6 +635,10 @@
       name: '@deepseek-ai/dsh-memory-pdf'
     - id: memory-notability
       name: '@deepseek-ai/dsh-memory-notability'
+    # Parallel agent runs: one git worktree per lane, lane diffs, and merge
+    # of the chosen lane, over the worktrees Remote namespace.
+    - id: worktrees
+      name: '@deepseek-ai/dsh-worktrees'
     # Personal data connectors: calendar ICS feeds and Canvas assignments
     # synced into one agenda and the Obsidian agenda note, over the
     # connectors Remote namespace.

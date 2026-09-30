@@ -333,14 +333,18 @@
       "@deepseek-ai/dsh-native-command/types": ["./packages/util/native-command/src/types.ts"],
       // client ui-* and skill-set folders whose npm names the generator cannot
       // derive from their directories; these stay hand-written.
+      "@deepseek-ai/dsh-client-ui-skin": ["./packages/client/ui-skin/src"],
       "@deepseek-ai/dsh-client-ui-skills": ["./packages/client/ui-skills/src"],
       "@deepseek-ai/dsh-client-ui-agents": ["./packages/client/ui-agents/src"],
       "@deepseek-ai/dsh-client-ui-memory": ["./packages/client/ui-memory/src"],
+      "@deepseek-ai/dsh-client-ui-profile": ["./packages/client/ui-profile/src"],
       "@deepseek-ai/dsh-client-ui-agenda": ["./packages/client/ui-agenda/src"],
       "@deepseek-ai/dsh-client-ui-lectures": ["./packages/client/ui-lectures/src"],
       "@deepseek-ai/dsh-client-ui-knowledge-sources": ["./packages/client/ui-knowledge-sources/src"],
       "@deepseek-ai/dsh-client-ui-dashboard": ["./packages/client/ui-dashboard/src"],
       "@deepseek-ai/dsh-client-ui-orchestrator": ["./packages/client/ui-orchestrator/src"],
+      "@deepseek-ai/dsh-client-ui-parallel-runs": ["./packages/client/ui-parallel-runs/src"],
+      "@deepseek-ai/dsh-client-ui-workbench": ["./packages/client/ui-workbench/src"],
       "@deepseek-ai/dsh-client-ui-prices": ["./packages/client/ui-prices/src"],
       "@deepseek-ai/dsh-connectors": ["./packages/external/connectors/src"],
       "@deepseek-ai/dsh-lectures": ["./packages/external/lectures/src"],
@@ -351,6 +355,7 @@
       "@deepseek-ai/dsh-tool-memory": ["./packages/memory/tool-memory/src"],
       "@deepseek-ai/dsh-knowledge-context": ["./packages/memory/knowledge-context/src"],
       "@deepseek-ai/dsh-tool-mind-map": ["./packages/memory/tool-mind-map/src"],
+      "@deepseek-ai/dsh-worktrees": ["./packages/workspace/worktrees/src"],
       "@deepseek-ai/dsh-skill-sets": ["./packages/skill/skill-sets/src"],
       // BEGIN generated package aliases — pnpm run gen-tsconfig-paths
       "@deepseek-ai/dsh-acp": ["./packages/acp/acp/src"],

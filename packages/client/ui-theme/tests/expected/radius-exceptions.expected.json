@@ -25,6 +25,11 @@
   "ui-prices/src/client/PricesSection.module.css": [
     ".button: border-radius: 8px"
   ],
+  "ui-profile/src/client/ProfileSection.module.css": [
+    ".input: border-radius: 8px",
+    ".button: border-radius: 8px",
+    ".secondary: border-radius: 8px"
+  ],
   "ui-schedule/src/client/ClockPicker.module.css": [
     ".option: border-radius: 10px"
   ],

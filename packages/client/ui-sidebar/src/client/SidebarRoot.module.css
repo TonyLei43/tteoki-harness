@@ -612,3 +612,21 @@
     animation: none;
   }
 }
+
+/* The Others group folds rarely used panels under one row; opened, its rows
+   indent under the row's glyph in the wide column and stack flush in the rail. */
+.othersChevron {
+  display: inline-flex;
+  margin-left: auto;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.othersList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.othersIndented {
+  padding-left: 12px;
+}

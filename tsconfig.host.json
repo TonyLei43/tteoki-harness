@@ -344,6 +344,7 @@
     { "path": "./packages/memory/tool-memory" },
     { "path": "./packages/memory/knowledge-context" },
     { "path": "./packages/memory/tool-mind-map" },
+    { "path": "./packages/workspace/worktrees" },
     { "path": "./packages/external/connectors" },
     { "path": "./packages/external/lectures" },
     { "path": "./packages/external/tool-agenda" },

@@ -40,6 +40,12 @@
     },
     {
       "path": "../shortcuts/tsconfig.client.json"
+    },
+    {
+      "path": "../../../vendor/schemastery"
+    },
+    {
+      "path": "../ui-settings/tsconfig.client.json"
     }
   ]
 }

@@ -35,6 +35,8 @@ The expanded brand row renders `sidebar.brand.mark` and `sidebar.brand.name` as 
 
 Plugins add an icon component to the root-scoped `sidebar.panellist` list with an `id`, optional `order`, and a string or locale-aware `label`. The same id addresses the component registered in the layout's root-scoped `main` keyed slot; selecting a missing main entry throws without changing the current selection. The label supplies plain visible text, the accessible name, and the collapsed tooltip. Each row reads its own selected state through `usePanelInfo`; moving DOM focus to search or a directory picker does not change the displayed panel or its selected row. With no registrations, neither the list nor spacing for it is rendered. The shipped composition registers no example panel.
 
+The `others` setting (the `ui-sidebar` Loader entry's config, published to the browser through the Host settings service) lists panel ids that fold under one **Others** row after the top-level rows, keeping their order. The row toggles the group open; the group stays open while one of its panels is selected and closes when another panel is selected after it was toggled closed. The default is no Others row.
+
 ### Collapse behavior
 
 The sidebar and conversation-header toggles show the effective shortcut from the command catalog in their hover and keyboard-focus tooltips and `aria-keyshortcuts`. An unbound command shows only the action label.

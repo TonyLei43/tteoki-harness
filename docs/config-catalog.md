@@ -4442,6 +4442,25 @@ export interface Config {
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-workspace-changes -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-worktrees -->
+<a id="deepseek-aidsh-worktrees"></a>
+
+## `@deepseek-ai/dsh-worktrees`
+
+- `inject`: `typert`
+- `source`: [`packages/workspace/worktrees/src/index.ts:46`](../packages/workspace/worktrees/src/index.ts)
+
+```ts config-catalog
+/** Deployment policy for parallel runs. */
+export interface Config {
+  /** Directory holding run worktrees and the run registry; defaults to `$DSH_HOME/worktrees`. */
+  readonly root?: string
+  /** Largest unified diff returned for one lane, in bytes. */
+  readonly maxPatchBytes: number
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-worktrees -->
+
 ## Loadable plugins with no config
 
 These load from a `cordis.yml` entry with no `config:` block; they declare no configuration API.
@@ -4484,9 +4503,11 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-ui-model-selection` | — | [`packages/client/ui-model-selection/src/index.ts`](../packages/client/ui-model-selection/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-open-in-app` | — | [`packages/client/ui-open-in-app/src/index.ts`](../packages/client/ui-open-in-app/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-orchestrator` | — | [`packages/client/ui-orchestrator/src/index.ts`](../packages/client/ui-orchestrator/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-parallel-runs` | — | [`packages/client/ui-parallel-runs/src/index.ts`](../packages/client/ui-parallel-runs/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-permission-presets` | — | [`packages/client/ui-permission-presets/src/index.ts`](../packages/client/ui-permission-presets/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-plan` | — | [`packages/client/ui-plan/src/index.ts`](../packages/client/ui-plan/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-prices` | — | [`packages/client/ui-prices/src/index.ts`](../packages/client/ui-prices/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-profile` | — | [`packages/client/ui-profile/src/index.ts`](../packages/client/ui-profile/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-reference` | — | [`packages/client/ui-reference/src/index.ts`](../packages/client/ui-reference/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-renderer` | — | [`packages/client/ui-renderer/src/index.ts`](../packages/client/ui-renderer/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-schedule` | — | [`packages/client/ui-schedule/src/index.ts`](../packages/client/ui-schedule/src/index.ts) |
@@ -4507,10 +4528,12 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-ui-sidebar-terminal` | — | [`packages/client/ui-sidebar-terminal/src/index.ts`](../packages/client/ui-sidebar-terminal/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-skill` | — | [`packages/client/ui-skill/src/index.ts`](../packages/client/ui-skill/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-skills` | — | [`packages/client/ui-skills/src/index.ts`](../packages/client/ui-skills/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-skin` | — | [`packages/client/ui-skin/src/index.ts`](../packages/client/ui-skin/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-subagent` | — | [`packages/client/ui-subagent/src/index.ts`](../packages/client/ui-subagent/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-tool` | — | [`packages/client/ui-tool/src/index.ts`](../packages/client/ui-tool/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-trajectory` | — | [`packages/client/ui-trajectory/src/index.ts`](../packages/client/ui-trajectory/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-user-questions` | — | [`packages/client/ui-user-questions/src/index.ts`](../packages/client/ui-user-questions/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-workbench` | — | [`packages/client/ui-workbench/src/index.ts`](../packages/client/ui-workbench/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-workflow-run` | — | [`packages/client/ui-workflow-run/src/index.ts`](../packages/client/ui-workflow-run/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-workspace` | — | [`packages/client/ui-workspace/src/index.ts`](../packages/client/ui-workspace/src/index.ts) |
 | `@deepseek-ai/dsh-command-compact` | `commands` · `compaction` | [`packages/compaction/command-compact/src/index.ts`](../packages/compaction/command-compact/src/index.ts) |

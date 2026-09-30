@@ -7,6 +7,8 @@ import type { MainPanelId } from '@deepseek-ai/dsh-client-ui-layout/client'
 import type {} from '@deepseek-ai/dsh-client-locale/client'
 // Type-only: pulls the SlotRegistry service merge (ctx.slots).
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client'
+// Type-only: the settings forms service merge (ctx.configForms).
+import type {} from '@deepseek-ai/dsh-client-ui-settings/client'
 // Type-only: pulls the Session root standard-props merge.
 import type {} from '@deepseek-ai/dsh-client-ui-session/client'
 import type { SidebarPanelMetadata, SidebarRootInjected } from './contract/slots.ts'
@@ -38,10 +40,14 @@ interface WorkspaceNavigation {
 /** Services required by the sidebar plugin. */
 export const inject = ['slots', 'layout', 'uiWorkspace', 'locale', 'shortcuts']
 
+/** Settings namespace: the sidebar's Loader entry id, whose `others` lists the panels folded under Others. */
+const SETTINGS_NAMESPACE = 'ui-sidebar'
+
 /** Registers the sidebar shell and its service callbacks.
  * @param ctx - Client root context.
  */
 export function apply(ctx: ClientContext): void {
+  let others: ReadonlySet<string> = new Set()
   const workspaceNavigation = ctx.get('uiWorkspace') as unknown as WorkspaceNavigation
   ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'ui-sidebar: dictionaries')
   const panels = createSnapshotStore<readonly SidebarPanelMetadata[]>([])
@@ -49,16 +55,26 @@ export function apply(ctx: ClientContext): void {
     const next = ctx.slots.entriesOfSlot('sidebar.panellist').map(({ options }) => {
       // The list registration requires an id; StoredEntry erases the slot kind.
       const id = options.id as MainPanelId
-      return { id, order: options.order ?? 0, label: resolveSlotLabel(options.label) ?? id }
+      return { id, order: options.order ?? 0, label: resolveSlotLabel(options.label) ?? id, grouped: others.has(id) }
     }).sort((a, b) => a.order - b.order)
     const previous = panels.getSnapshot()
     if (previous.length === next.length && previous.every((panel, index) => {
       const candidate = next[index] as SidebarPanelMetadata
-      return panel.id === candidate.id && panel.order === candidate.order && panel.label === candidate.label
+      return panel.id === candidate.id && panel.order === candidate.order && panel.label === candidate.label && panel.grouped === candidate.grouped
     })) return
     panels.set(next)
   }
   ctx.effect(() => ctx.slots.subscribe('sidebar.panellist', syncPanels), 'ui-sidebar: panel entries')
+  // Without a settings provider every panel stays at the top level.
+  ctx.inject(['configForms'], (scope) => {
+    const form = scope.configForms.get<{ others?: string[] }>(SETTINGS_NAMESPACE)
+    const read = (): void => {
+      others = new Set(form.getSnapshot().value?.others ?? [])
+      syncPanels()
+    }
+    scope.effect(() => form.subscribe(read), 'ui-sidebar: Others settings')
+    read()
+  })
   ctx.effect(() => ctx.locale.subscribe(syncPanels), 'ui-sidebar: panel labels')
 
   const injectProps = (): SidebarRootInjected => ({
