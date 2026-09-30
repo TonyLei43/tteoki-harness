@@ -1,0 +1,85 @@
+.panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: auto;
+  padding: 36px 32px;
+  width: 100%;
+}
+
+/* The panel fills the main column; a skin may lay a pattern behind it. */
+.panel {
+  background: var(--tteoki-home-bg, none);
+  max-width: none;
+  padding-left: max(32px, calc((100% - 1136px) / 2));
+  padding-right: max(32px, calc((100% - 1136px) / 2));
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.greeting {
+  color: var(--dsw-alias-label-primary);
+  font-family: var(--tteoki-font-display, inherit);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 32px;
+  margin: 0;
+}
+
+.date {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+  margin: 0;
+}
+
+.grid {
+  align-items: start;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+
+.card {
+  background: var(--dsw-alias-bg-layer-1);
+  border: var(--tteoki-card-border-width, 0.5px) solid var(--tteoki-card-border, var(--dsw-alias-border-l2));
+  border-radius: var(--tteoki-card-radius, 12px);
+  box-shadow: var(--tteoki-card-shadow, none);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 460px;
+  min-width: 0;
+  padding: 16px 18px;
+}
+
+/* The primary widget (lowest order) owns the full-width first row: a calendar
+   grid or a similarly wide view needs the whole surface, and the remaining
+   widgets tile below it. */
+.grid > :first-child {
+  grid-column: 1 / -1;
+  max-height: 640px;
+}
+
+.cardTitle {
+  color: var(--dsw-alias-label-secondary);
+  font-family: var(--tteoki-font-display, inherit);
+  font-size: var(--tteoki-card-title-size, 11px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.cardBody {
+  min-height: 0;
+  overflow: auto;
+}

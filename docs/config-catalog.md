@@ -737,6 +737,25 @@ export interface ToolResultPruneConfig {
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-compaction-tool-result-pruner -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-connectors -->
+<a id="deepseek-aidsh-connectors"></a>
+
+## `@deepseek-ai/dsh-connectors`
+
+- `inject`: `typert` · `credentials`
+- `source`: [`packages/external/connectors/src/index.ts:64`](../packages/external/connectors/src/index.ts)
+
+```ts config-catalog
+/** Deployment policy for the connectors service. */
+export interface Config {
+  /** Harness home override; defaults to the resolved DSH home. */
+  readonly home?: string
+  /** Time zone of the agenda note; defaults to the host's zone. */
+  readonly timeZone?: string
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-connectors -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-cordis-host-runner -->
 <a id="deepseek-aidsh-cordis-host-runner"></a>
 
@@ -1581,6 +1600,23 @@ export interface Config {
 }
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-knowledge-context -->
+
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-lectures -->
+<a id="deepseek-aidsh-lectures"></a>
+
+## `@deepseek-ai/dsh-lectures`
+
+- `inject`: `typert` · `memory`
+- `source`: [`packages/external/lectures/src/index.ts:68`](../packages/external/lectures/src/index.ts)
+
+```ts config-catalog
+/** Deployment policy for the lectures service. */
+export interface Config {
+  /** Harness home override; defaults to the resolved DSH home. */
+  readonly home?: string
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-lectures -->
 
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-llm-deepseek-account -->
 <a id="deepseek-aidsh-llm-deepseek-account"></a>
@@ -4401,6 +4437,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-locale` | — | [`packages/client/locale/src/index.ts`](../packages/client/locale/src/index.ts) |
 | `@deepseek-ai/dsh-client-modules` | `loader` | [`packages/client/modules/src/index.ts`](../packages/client/modules/src/index.ts) |
 | `@deepseek-ai/dsh-client-resources` | — | [`packages/client/resources/src/index.ts`](../packages/client/resources/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-agenda` | — | [`packages/client/ui-agenda/src/index.ts`](../packages/client/ui-agenda/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-agent-preset` | — | [`packages/client/ui-agent-preset/src/index.ts`](../packages/client/ui-agent-preset/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-agents` | — | [`packages/client/ui-agents/src/index.ts`](../packages/client/ui-agents/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-approval` | — | [`packages/client/ui-approval/src/index.ts`](../packages/client/ui-approval/src/index.ts) |
@@ -4410,6 +4447,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-ui-commands` | — | [`packages/client/ui-commands/src/index.ts`](../packages/client/ui-commands/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-conversation` | — | [`packages/client/ui-conversation/src/index.ts`](../packages/client/ui-conversation/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-cordis` | — | [`packages/extensions/ui-cordis/src/index.ts`](../packages/extensions/ui-cordis/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-dashboard` | — | [`packages/client/ui-dashboard/src/index.ts`](../packages/client/ui-dashboard/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-deliverables` | `systemPrompt` · `connection` · `sessionQuery` · `sessionController` · `workspaceFiles` · `fs` · `sandboxPolicy` · `workspaceChanges` | [`packages/client/ui-deliverables/src/index.ts`](../packages/client/ui-deliverables/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-directory-picker-browse` | — | [`packages/client/ui-directory-picker-browse/src/index.ts`](../packages/client/ui-directory-picker-browse/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-directory-picker-native` | — | [`packages/client/ui-directory-picker-native/src/index.ts`](../packages/client/ui-directory-picker-native/src/index.ts) |
@@ -4418,6 +4456,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-ui-jobs` | — | [`packages/client/ui-jobs/src/index.ts`](../packages/client/ui-jobs/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-knowledge-sources` | — | [`packages/client/ui-knowledge-sources/src/index.ts`](../packages/client/ui-knowledge-sources/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-layout` | — | [`packages/client/ui-layout/src/index.ts`](../packages/client/ui-layout/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-lectures` | — | [`packages/client/ui-lectures/src/index.ts`](../packages/client/ui-lectures/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-memory` | — | [`packages/client/ui-memory/src/index.ts`](../packages/client/ui-memory/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-message-feedback` | — | [`packages/client/ui-message-feedback/src/index.ts`](../packages/client/ui-message-feedback/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-model-selection` | — | [`packages/client/ui-model-selection/src/index.ts`](../packages/client/ui-model-selection/src/index.ts) |
@@ -4487,6 +4526,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-subprocess-local` | — | [`packages/subprocess/subprocess-local/src/index.ts`](../packages/subprocess/subprocess-local/src/index.ts) |
 | `@deepseek-ai/dsh-subprocess-ssh` | `ssh` | [`packages/ssh/subprocess-ssh/src/index.ts`](../packages/ssh/subprocess-ssh/src/index.ts) |
 | `@deepseek-ai/dsh-terminal` | — | [`packages/terminal/terminal/src/index.ts`](../packages/terminal/terminal/src/index.ts) |
+| `@deepseek-ai/dsh-tool-agenda` | `tools` · `connectors` | [`packages/external/tool-agenda/src/index.ts`](../packages/external/tool-agenda/src/index.ts) |
 | `@deepseek-ai/dsh-tool-ask-user` | `tools` · `userQuestions` | [`packages/interaction/tool-ask-user/src/index.ts`](../packages/interaction/tool-ask-user/src/index.ts) |
 | `@deepseek-ai/dsh-tool-call-timeout-policy` | `tools` | [`packages/guard/timeout-policy/src/index.ts`](../packages/guard/timeout-policy/src/index.ts) |
 | `@deepseek-ai/dsh-tool-cordis` | `tools` · `cordisInspect` | [`packages/extensions/tool-cordis/src/index.ts`](../packages/extensions/tool-cordis/src/index.ts) |

@@ -34,8 +34,14 @@ export const remoteDefaultResponses: RemoteTable = {
     'credentials/describe': ok({}),
     // ui-permission-presets `PermissionCatalogDirectory` on its first read for a connection generation.
     'permissionPresets/catalog': ok({ options: [] }),
+    // ui-agenda Calendar, Upcoming, and Assignments widgets on Home.
+    'connectors/agenda': ok({ items: [] }),
+    'connectors/status': ok({ connectors: [] }),
     // ui-memory's panel on first load.
     'memory/status': ok({ documents: 0, chunks: 0, entities: 0, relations: 0, collections: [], failures: [] }),
+    // ui-lectures quiz widget on Home.
+    'lectures/status': ok({ enabled: false, lectures: [] }),
+    'lectures/quizzes': ok({ quizzes: [] }),
     // ui-settings-account refreshes details after a stored-grant snapshot.
     'account/getProfile': ok(null),
     'account/getBalance': ok(null),

@@ -7,7 +7,7 @@ kind: "package-group"
 
 ## Summary
 
-The external group connects the harness to outside services running beside it. `dsh-prices` serves DeepSeek's static rate card with its off-peak clock and a cached normalized OpenRouter model list; `dsh-client-ui-prices` renders both as the Web Prices page. Each bridge keeps the peer service's own API at the wire edge: the bridge adapts, it does not proxy.
+The external group connects the harness to outside services running beside it. `dsh-prices` serves DeepSeek's static rate card with its off-peak clock and a cached normalized OpenRouter model list; `dsh-client-ui-prices` renders both as the Web Prices page. `dsh-connectors` syncs calendar ICS feeds and Canvas assignments into one agenda, `dsh-tool-agenda` gives the model that agenda, and `dsh-lectures` turns Notability lecture notes into transcripts, a LaTeX master document per course, and quizzes. Each bridge keeps the peer service's own API at the wire edge: the bridge adapts, it does not proxy.
 
 ## Table of Contents
 
@@ -24,12 +24,17 @@ The external group connects the harness to outside services running beside it. `
 |---|---|---|
 | [`prices/`](prices/README.md) | Serves the DeepSeek rate card with its off-peak clock and a cached OpenRouter catalog over the `prices` Remote namespace | `ctx.prices` |
 | [`../../client/ui-prices/`](../client/ui-prices/README.md) | Web Prices page: off-peak clock, DeepSeek token table, and searchable OpenRouter list | — |
+| [`connectors/`](connectors/README.md) | Syncs calendar ICS feeds and Canvas assignments into one agenda over the `connectors` Remote namespace | `ctx.connectors` |
+| [`tool-agenda/`](tool-agenda/README.md) | Model-facing agenda and course tools over the connectors service | — |
+| [`lectures/`](lectures/README.md) | Lecture pipeline: Notability notes to transcripts, a LaTeX master document per course, and quizzes | `ctx.lectures` |
 
 <a id="related-documentation"></a>
 ## Related documentation
 
 - [Prices package](prices/README.md) — the rate card, off-peak clock, and OpenRouter catalog contract.
 - [Prices page package](../client/ui-prices/README.md) — the Web surface over the namespace.
+- [Connectors package](connectors/README.md) — the agenda sync, credentials, and Remote contract.
+- [Lectures package](lectures/README.md) — the lecture pipeline and quiz contract.
 
 <a id="dev-note"></a>
 ## Dev Note

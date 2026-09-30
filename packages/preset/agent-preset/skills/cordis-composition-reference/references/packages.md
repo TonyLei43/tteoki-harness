@@ -64,6 +64,7 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 | `@deepseek-ai/dsh-client-modules` | no | Client module system, dual-face: node half composes the __DSH_BOOT__ entry graph (incremental dsh.client scan, bundle route, index tap, webPlugins service); browser half is the lazy-CJS module table the vendored cordis Loader consumes as its internal seam |
 | `@deepseek-ai/dsh-client-resources` | no | Unified client resource model: protocol-registered providers turn URL addresses into live values, consumed through the useResource global standard hook |
 | `@deepseek-ai/dsh-client-shortcuts` | yes | Application keyboard command registry and physical-key routing |
+| `@deepseek-ai/dsh-client-ui-agenda` | no | Agenda for the dsh web client: a day/week/month calendar plus upcoming-events and assignments-due dashboard widgets, and an Agenda panel for connectors, over the connectors Remote namespace |
 | `@deepseek-ai/dsh-client-ui-agent-preset` | no | Agent-preset surfaces: the default for later sessions, this session's seat, and the composition editor |
 | `@deepseek-ai/dsh-client-ui-agents` | no | Agents settings section for the dsh web client: lists agent presets and binds each one's model route |
 | `@deepseek-ai/dsh-client-ui-approval` | no | Approval composer takeover over the scoped Remote Event waterfall |
@@ -72,6 +73,7 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 | `@deepseek-ai/dsh-client-ui-chat` | no | Chat Conversation target, node definitions, renderers, and details surface |
 | `@deepseek-ai/dsh-client-ui-commands` | no | Client command surface: global directory cache, '/' source, three command UI kinds, popupSelect registry |
 | `@deepseek-ai/dsh-client-ui-conversation` | no | Target-neutral Conversation assembly, shell, composer, queue, and view navigation |
+| `@deepseek-ai/dsh-client-ui-dashboard` | no | Home dashboard for the dsh web client: the first sidebar panel and the view the app opens on, a greeting and widget cards filled through the dashboard.widget slot |
 | `@deepseek-ai/dsh-client-ui-deliverables` | no | Changed-files card with per-file comparison tabs, delivery cards, and clickable final-response file references for Web |
 | `@deepseek-ai/dsh-client-ui-directory-picker-browse` | no | In-app directory browsing surface: the workspace directory-flow owner rendering the host's listing and creation primitives |
 | `@deepseek-ai/dsh-client-ui-directory-picker-native` | no | Native directory-picker surface: the renderless workspace directory-flow occupant driving the local Desktop or Host OS chooser |
@@ -80,6 +82,7 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 | `@deepseek-ai/dsh-client-ui-jobs` | no | Session-header background-job list with on-demand streaming record panels |
 | `@deepseek-ai/dsh-client-ui-knowledge-sources` | no | Knowledge Sources card for the dsh web client: under every grounded answer, the notes the model was given, with passages, page previews, and file opening |
 | `@deepseek-ai/dsh-client-ui-layout` | no | Shell plugin: three-column AppFrame with drag handles, ctx.layout viewing-state service (navigation + panels) |
+| `@deepseek-ai/dsh-client-ui-lectures` | no | Lecture quiz widget for the dsh web client: the end-of-lecture quiz with folded answers, the lecture pipeline status, and a Quiz me session, over the lectures Remote namespace |
 | `@deepseek-ai/dsh-client-ui-memory` | no | Memory settings section and Knowledge panel for the dsh web client: knowledge bases, indexing, search, and memory notes over the memory Remote namespace |
 | `@deepseek-ai/dsh-client-ui-message-feedback` | no | The Web feedback surface: per-message Like/Dislike in the assistant-message action strip and the feedback dialog behind both ratings and /feedback, backed by the messageFeedback and sessionFeedback Host Remotes |
 | `@deepseek-ai/dsh-client-ui-model-selection` | no | Model selection over the shared model catalog, Session projection, and session.selectModel |
@@ -210,7 +213,10 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 
 | Package | Config | Description |
 |---|---|---|
+| `@deepseek-ai/dsh-connectors` | yes | Personal data connectors: calendar ICS feeds and Canvas assignments synced into one agenda, an Obsidian agenda note, and the connectors Remote namespace |
+| `@deepseek-ai/dsh-lectures` | yes | Lecture pipeline: Notability lecture notes transcribed into the vault, a LaTeX master document per course, and end-of-lecture quizzes over the lectures Remote namespace |
 | `@deepseek-ai/dsh-prices` | yes | DeepSeek and OpenRouter token price catalog: the static DeepSeek rate card with its off-peak clock, plus a cached normalized OpenRouter model list, over the generated prices Remote namespace |
+| `@deepseek-ai/dsh-tool-agenda` | no | Model-facing agenda and course tools: the user's upcoming events and deadlines, and per-class lookups linked to knowledge bases |
 
 ## feedback
 
