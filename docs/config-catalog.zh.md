@@ -4162,6 +4162,29 @@ export type ToolPresentationMode = 'native' | 'ptc' | 'both'
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-tools -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-tteoki -->
+<a id="deepseek-aidsh-tteoki"></a>
+
+## `@deepseek-ai/dsh-tteoki`
+
+- `inject`: `cmdlineArgs` · `memory` · `connectors` · `worktrees`
+- `source`: [`packages/bundle/tteoki/src/index.ts:35`](../packages/bundle/tteoki/src/index.ts)
+
+```ts config-catalog
+/** Output sinks and the clock, replaceable in tests. */
+export interface CliIo {
+  /** Writes one line of command output. */
+  readonly out: (line: string) => void
+  /** Writes one line of diagnostics. */
+  readonly err: (line: string) => void
+  /** Returns the current time in epoch milliseconds. */
+  readonly now: () => number
+  /** IANA time zone that agenda dates render in. */
+  readonly timeZone: string
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-tteoki -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-typert-loader -->
 <a id="deepseek-aidsh-typert-loader"></a>
 

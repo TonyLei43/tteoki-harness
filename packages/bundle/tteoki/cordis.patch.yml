@@ -1,0 +1,21 @@
+# The dsh-tteoki bundle patch: Tteoki's command-line companion over dsh-base.
+# It mounts the knowledge-base, connectors, and worktrees services with no
+# Host, HTTP server, or browser plugin, and one command plugin that reads
+# `dsh tteoki <command>`, prints its result, and exits.
+
+- insert:
+    - id: memory
+      name: '@deepseek-ai/dsh-memory'
+    - id: memory-pdf
+      name: '@deepseek-ai/dsh-memory-pdf'
+    - id: memory-notability
+      name: '@deepseek-ai/dsh-memory-notability'
+    - id: connectors
+      name: '@deepseek-ai/dsh-connectors'
+    - id: worktrees
+      name: '@deepseek-ai/dsh-worktrees'
+    - id: tteoki-cli
+      name: '@deepseek-ai/dsh-tteoki'
+
+- id: hmr
+  disabled: true
