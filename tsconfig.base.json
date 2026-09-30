@@ -334,8 +334,16 @@
       // client ui-* and skill-set folders whose npm names the generator cannot
       // derive from their directories; these stay hand-written.
       "@deepseek-ai/dsh-client-ui-agents": ["./packages/client/ui-agents/src"],
+      "@deepseek-ai/dsh-client-ui-memory": ["./packages/client/ui-memory/src"],
+      "@deepseek-ai/dsh-client-ui-knowledge-sources": ["./packages/client/ui-knowledge-sources/src"],
       "@deepseek-ai/dsh-client-ui-orchestrator": ["./packages/client/ui-orchestrator/src"],
       "@deepseek-ai/dsh-client-ui-prices": ["./packages/client/ui-prices/src"],
+      "@deepseek-ai/dsh-memory": ["./packages/memory/memory/src"],
+      "@deepseek-ai/dsh-memory-notability": ["./packages/memory/memory-notability/src"],
+      "@deepseek-ai/dsh-memory-pdf": ["./packages/memory/memory-pdf/src"],
+      "@deepseek-ai/dsh-tool-memory": ["./packages/memory/tool-memory/src"],
+      "@deepseek-ai/dsh-knowledge-context": ["./packages/memory/knowledge-context/src"],
+      "@deepseek-ai/dsh-tool-mind-map": ["./packages/memory/tool-mind-map/src"],
       // BEGIN generated package aliases — pnpm run gen-tsconfig-paths
       "@deepseek-ai/dsh-acp": ["./packages/acp/acp/src"],
       "@deepseek-ai/dsh-acp-app": ["./packages/bundle/acp-app/src"],

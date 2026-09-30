@@ -78,7 +78,9 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 | `@deepseek-ai/dsh-client-ui-goal` | no | Session goal surface: GoalBar docked above the composer, read from the goal session projection |
 | `@deepseek-ai/dsh-client-ui-input-trigger` | no | Input trigger pipeline: '/' and '@' detection, candidate menu, pick routing to registered sources |
 | `@deepseek-ai/dsh-client-ui-jobs` | no | Session-header background-job list with on-demand streaming record panels |
+| `@deepseek-ai/dsh-client-ui-knowledge-sources` | no | Knowledge Sources card for the dsh web client: under every grounded answer, the notes the model was given, with passages, page previews, and file opening |
 | `@deepseek-ai/dsh-client-ui-layout` | no | Shell plugin: three-column AppFrame with drag handles, ctx.layout viewing-state service (navigation + panels) |
+| `@deepseek-ai/dsh-client-ui-memory` | no | Memory settings section and Knowledge panel for the dsh web client: knowledge bases, indexing, search, and memory notes over the memory Remote namespace |
 | `@deepseek-ai/dsh-client-ui-message-feedback` | no | The Web feedback surface: per-message Like/Dislike in the assistant-message action strip and the feedback dialog behind both ratings and /feedback, backed by the messageFeedback and sessionFeedback Host Remotes |
 | `@deepseek-ai/dsh-client-ui-model-selection` | no | Model selection over the shared model catalog, Session projection, and session.selectModel |
 | `@deepseek-ai/dsh-client-ui-open-in-app` | no | Web "Open In..." controls: the Session-header split button opening the workspace directory in an installed application, and the document preview's default-application controls for one file |
@@ -308,6 +310,17 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 |---|---|---|
 | `@deepseek-ai/dsh-mcp-client` | yes | MCP client bridge: connects to MCP servers and registers their tools on ctx.tools |
 | `@deepseek-ai/dsh-mcp-resources` | no | Scoped MCP resource discovery and reading through shared model tools |
+
+## memory
+
+| Package | Config | Description |
+|---|---|---|
+| `@deepseek-ai/dsh-knowledge-context` | yes | Knowledge-first grounding: every user message is searched in the knowledge bases and the best passages reach the model as cited context, with outside-source verification |
+| `@deepseek-ai/dsh-memory` | yes | Local knowledge bases: extract documents, index each knowledge base into SQLite vectors and a knowledge graph through an OpenAI-compatible endpoint, and keep agent memory notes |
+| `@deepseek-ai/dsh-memory-notability` | no | Notability note extractor for the dsh-memory ingestion pipeline |
+| `@deepseek-ai/dsh-memory-pdf` | no | PDF text extractor for the dsh-memory ingestion pipeline |
+| `@deepseek-ai/dsh-tool-memory` | yes | Model-facing knowledge-base search and memory-note tools, scoped to the knowledge bases one preset may reach |
+| `@deepseek-ai/dsh-tool-mind-map` | yes | The mind_map tool: the model shows the user a visual map of how ideas connect, drawn by the Web client |
 
 ## plan
 
