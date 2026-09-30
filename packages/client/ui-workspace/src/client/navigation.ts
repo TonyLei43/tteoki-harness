@@ -342,6 +342,13 @@ class UiWorkspaceService extends Service implements UiWorkspace {
     if (sessionId === undefined && target !== undefined) sessionId = await this.connectWorkspace(target)
     if (sessionId !== undefined && !navigation.aborted) {
       this.replaceMain(sessionId, navigation, 'preserve')
+      return
+    }
+    if (saved.sessionId !== undefined && !navigation.aborted) {
+      // A persisted selection that resolved to no Session must not linger:
+      // the conversation scope would otherwise bind an unknown Session on
+      // every locale change, logging uiConversation.binding errors.
+      this.selection.set({})
     }
   }
 

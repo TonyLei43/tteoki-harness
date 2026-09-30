@@ -214,7 +214,13 @@ export function apply(ctx: Context, config: Config = Config({})): void {
         return candidate !== undefined && tab.id === candidate.id && tab.label === candidate.label
       })
     if (!unchanged) conversationViews.set(next)
-    for (const binding of bindings) restoreView(binding.sessionId)
+    // A tracked binding whose Session was released must be skipped: restoring
+    // its view would bind an unknown Session (a user-visible crash on every
+    // locale change, e.g. after a persisted selection no longer resolves).
+    for (const binding of bindings) {
+      if (sessions.binding(binding.sessionId) !== binding) continue
+      restoreView(binding.sessionId)
+    }
   }
   ctx.effect(() => {
     const disposeViews = slots.subscribe('conversation.view', refreshViews)

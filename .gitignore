@@ -42,7 +42,7 @@ apps/web/dist/
 .playwright-mcp/
 .orig
 .worktrees/
-worktrees/
+/worktrees/
 .agents/worktrees/
 .typert-*/
 native/system/test/bin/
