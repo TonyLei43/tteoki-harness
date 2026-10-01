@@ -5,6 +5,8 @@ import agentPresetsRemote from '@deepseek-ai/dsh-agent-preset-registry/remote'
 import agentModelsRemote from '@deepseek-ai/dsh-agent-models/remote'
 import memoryRemote from '@deepseek-ai/dsh-memory/remote'
 import pricesRemote from '@deepseek-ai/dsh-prices/remote'
+import connectorsRemote from '@deepseek-ai/dsh-connectors/remote'
+import lecturesRemote from '@deepseek-ai/dsh-lectures/remote'
 import commandsRemote from '@deepseek-ai/dsh-commands/remote'
 import accountRemote from '@deepseek-ai/dsh-api-account-controller/remote'
 import settingsControllerRemote from '@deepseek-ai/dsh-api-settings-controller/remote'
@@ -56,6 +58,18 @@ export type {
   DeepseekModelRates, DeepseekSchedule, DeepseekValue, OffPeakNow, OpenRouterModel,
   OpenRouterModelsValue, PriceTier, PricesStatus,
 } from '@deepseek-ai/dsh-prices'
+export type {} from '@deepseek-ai/dsh-connectors/remote'
+// The connectors namespace's wire vocabulary, so the agenda panel and dashboard
+// name this assembly alone.
+export type {
+  AgendaItem, AgendaKind, AgendaRequest, AssignmentStatus, ConnectorConfig, ConnectorKind, ConnectorSettings,
+  ConnectorSettingsUpdate, ConnectorStatus, ConnectorsStatus, CourseConfig,
+} from '@deepseek-ai/dsh-connectors'
+export type {} from '@deepseek-ai/dsh-lectures/remote'
+// The lectures namespace's wire vocabulary, so the quiz widget names this assembly alone.
+export type {
+  Lecture, LectureRef, LectureSettings, LectureSettingsUpdate, LectureStage, LecturesStatus, Quiz, QuizKind, QuizListRequest, QuizQuestion, WriterEndpoint,
+} from '@deepseek-ai/dsh-lectures'
 export type {} from '@deepseek-ai/dsh-commands/remote'
 export type {} from '@deepseek-ai/dsh-api-settings-controller/remote'
 export type {} from '@deepseek-ai/dsh-api-account-controller/remote'
@@ -194,7 +208,7 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
   const disposers: Array<() => Promise<void>> = []
   try {
     for (const contribution of [
-      agentPresetsRemote, agentModelsRemote, memoryRemote, pricesRemote, commandsRemote, settingsControllerRemote, accountRemote, goalsRemote, llmRemote, dynamicRemote, scheduleRemote,
+      agentPresetsRemote, agentModelsRemote, memoryRemote, pricesRemote, connectorsRemote, lecturesRemote, commandsRemote, settingsControllerRemote, accountRemote, goalsRemote, llmRemote, dynamicRemote, scheduleRemote,
       pluginInventoryRemote, pluginManagerRemote, pluginRegistryProbeRemote, messageFeedbackRemote, sessionFeedbackRemote,
       fileUploadsRemote, sessionReferencesRemote,
       permissionPresetsRemote, subagentsRemote, sessionRemote, jobRemote, workspaceRemote, workspaceFilesRemote, terminalRemote,

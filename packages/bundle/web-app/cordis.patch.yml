@@ -362,6 +362,22 @@
     - id: ui-orchestrator
       name: '@deepseek-ai/dsh-client-ui-orchestrator'
 
+    # Home dashboard under the blank-session composer; widgets register
+    # through the dashboard.widget slot.
+    - id: ui-dashboard
+      name: '@deepseek-ai/dsh-client-ui-dashboard'
+
+    # Agenda widgets (a day/week/month calendar, upcoming events, assignments
+    # due) and the Agenda panel over the connectors Remote namespace mounted
+    # above.
+    - id: ui-agenda
+      name: '@deepseek-ai/dsh-client-ui-agenda'
+
+    # Home dashboard lecture quiz: the latest end-of-lecture quiz with folded
+    # answers and a Quiz me session, over the lectures Remote namespace.
+    - id: ui-lectures
+      name: '@deepseek-ai/dsh-client-ui-lectures'
+
     # Sources card under every grounded answer: the notes the
     # knowledge-context plugin gave the model, with page previews.
     - id: ui-knowledge-sources
@@ -592,6 +608,16 @@
       name: '@deepseek-ai/dsh-memory-pdf'
     - id: memory-notability
       name: '@deepseek-ai/dsh-memory-notability'
+    # Personal data connectors: calendar ICS feeds and Canvas assignments
+    # synced into one agenda and the Obsidian agenda note, over the
+    # connectors Remote namespace.
+    - id: connectors
+      name: '@deepseek-ai/dsh-connectors'
+    # Lecture pipeline: Notability lecture notes transcribed into the vault,
+    # a LaTeX master document per course, and end-of-lecture quizzes, over
+    # the lectures Remote namespace. Inert until turned on in its settings.
+    - id: lectures
+      name: '@deepseek-ai/dsh-lectures'
 
     # Static DeepSeek rate card with its off-peak clock, plus a cached
     # normalized OpenRouter catalog; the prices Remote namespace the Web

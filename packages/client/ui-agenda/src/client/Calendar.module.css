@@ -1,0 +1,354 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.topbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.nav {
+  align-items: center;
+  display: flex;
+  gap: 2px;
+}
+
+.navButton {
+  padding: 0 3px;
+}
+
+.todayButton {
+  font-size: 12px;
+  padding: 0 8px;
+}
+
+.period {
+  color: var(--dsw-alias-label-primary);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 0 10px;
+}
+
+.switch {
+  flex: 1 1 220px;
+  max-width: 300px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.muted {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 11px;
+  margin: 0;
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.weekRow {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.weekday {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.monthGrid {
+  display: grid;
+  gap: 2px;
+  grid-auto-rows: minmax(40px, auto);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.monthCell {
+  border: 0.5px solid var(--dsw-alias-border-l1);
+  border-radius: var(--dsw-radius-sm);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 78px;
+  min-width: 0;
+  padding: 4px 5px;
+}
+
+.monthCell[data-today='true'] {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.outside .monthDay,
+.outside .pill {
+  opacity: 0.45;
+}
+
+.monthDay {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: 17px;
+  text-align: center;
+  width: 17px;
+}
+
+.monthDay[data-today='true'] {
+  background: var(--dsw-alias-brand-primary);
+  border-radius: 50%;
+  color: var(--dsw-alias-label-primary-foreground);
+  corner-shape: round;
+  font-weight: 600;
+}
+
+.pills {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  list-style: none;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.pill {
+  background: var(--dsw-alias-bg-layer-3);
+  border-radius: var(--dsw-radius-xs);
+  box-shadow: inset 2px 0 0 var(--dsw-alias-brand-primary);
+  color: var(--dsw-alias-label-primary);
+  display: block;
+  font-size: 10px;
+  line-height: 15px;
+  overflow: hidden;
+  padding: 0 4px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pill[data-kind='assignment'] {
+  box-shadow: inset 2px 0 0 var(--dsw-alias-state-warn-primary);
+}
+
+.more {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.head {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 44px repeat(var(--cal-days), minmax(0, 1fr));
+}
+
+.headDay {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  position: relative;
+}
+
+.headWeekday {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.headNumber {
+  align-items: center;
+  border-radius: 50%;
+  color: var(--dsw-alias-label-secondary);
+  corner-shape: round;
+  display: flex;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}
+
+.headNumber[data-today='true'] {
+  background: var(--dsw-alias-brand-primary);
+  color: var(--dsw-alias-label-primary-foreground);
+  font-weight: 600;
+}
+
+.allDayRow {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 44px repeat(var(--cal-days), minmax(0, 1fr));
+}
+
+.allDayLabel {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+  padding-top: 1px;
+}
+
+.allDayCell {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  position: relative;
+}
+
+/* Faint dotted separators between days, drawn in the gutter between grid
+   tracks and continued through the header, all-day row, and hour grid. */
+.headDay + .headDay::before,
+.allDayCell + .allDayCell::before,
+.column + .column::before {
+  border-left: 1px dotted var(--dsw-alias-border-l2);
+  bottom: 0;
+  content: '';
+  left: -1px;
+  position: absolute;
+  top: 0;
+}
+
+.hours {
+  border-top: 0.5px solid var(--dsw-alias-border-l1);
+  max-height: 420px;
+  overflow-y: auto;
+  /* One hour row's height; the widget's scroll-to-first-event offset uses the
+     same value (HOUR_HEIGHT in CalendarWidget.tsx). */
+  --cal-hour: 32px;
+  /* The grid's items sit on layer-3 fills, so the scrolling hour column draws
+     the elevated thumb pair (ui-theme styles/scrollbar.css rebinding contract). */
+  --dsh-scrollbar-thumb: var(--dsw-alias-scrollbar-bg-l2);
+  --dsh-scrollbar-thumb-hover: var(--dsw-alias-scrollbar-hover-l2);
+}
+
+.inner {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 44px repeat(var(--cal-days), minmax(0, 1fr));
+}
+
+.hourLabels {
+  display: flex;
+  flex-direction: column;
+}
+
+.hourLabel {
+  box-sizing: border-box;
+  color: var(--dsw-alias-label-tertiary);
+  flex: 0 0 var(--cal-hour);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  padding-right: 4px;
+  text-align: right;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  position: relative;
+}
+
+.slot {
+  border-top: 0.5px solid var(--dsw-alias-border-l1);
+  box-sizing: border-box;
+  flex: 0 0 var(--cal-hour);
+}
+
+.slot:first-child {
+  border-top: 0;
+}
+
+.nowLine {
+  background: var(--dsw-alias-state-error-primary);
+  height: 1.5px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: calc(var(--cal-now) / 1440 * 100%);
+  z-index: 2;
+}
+
+.block {
+  background: var(--dsw-alias-bg-layer-3);
+  border-radius: var(--dsw-radius-xs);
+  box-shadow: inset 2px 0 0 var(--dsw-alias-brand-primary);
+  box-sizing: border-box;
+  color: var(--dsw-alias-label-primary);
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  height: calc((var(--cal-end) - var(--cal-start)) / 1440 * 100%);
+  left: calc(var(--cal-lane) / var(--cal-lanes) * 100% + 1px);
+  overflow: hidden;
+  padding: 2px 5px;
+  position: absolute;
+  text-decoration: none;
+  top: calc(var(--cal-start) / 1440 * 100%);
+  width: calc(100% / var(--cal-lanes) - 4px);
+  z-index: 1;
+}
+
+.block[data-kind='assignment'] {
+  box-shadow: inset 2px 0 0 var(--dsw-alias-state-warn-primary);
+}
+
+.blockTime {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 9px;
+  line-height: 11px;
+}
+
+.blockTitle {
+  font-weight: 500;
+  line-height: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Class items are buttons that open the class page; they keep the pill and block look. */
+button.pill,
+button.block {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+button.pill {
+  font-size: 10px;
+  width: 100%;
+}
+
+button.pill:hover,
+button.block:hover {
+  filter: brightness(1.15);
+}

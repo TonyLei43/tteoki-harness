@@ -69,6 +69,12 @@
       "path": "../../external/prices"
     },
     {
+      "path": "../../external/connectors"
+    },
+    {
+      "path": "../../external/lectures"
+    },
+    {
       "path": "../../settings/settings"
     },
     {

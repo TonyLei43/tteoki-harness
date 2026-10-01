@@ -1,0 +1,138 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dayHeading {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  align-items: baseline;
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+}
+
+.time {
+  color: var(--dsw-alias-label-secondary);
+  flex: 0 0 72px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.title {
+  color: var(--dsw-alias-label-primary);
+  font-size: 13px;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+a.title:hover {
+  text-decoration: underline;
+}
+
+.muted {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 11px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.danger {
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.chip {
+  background: var(--dsw-alias-bg-layer-3);
+  border-radius: 4px;
+  color: var(--dsw-alias-label-primary);
+  flex-shrink: 0;
+  font-size: 10px;
+  padding: 1px 6px;
+}
+
+.chip[data-status='missing'],
+.chip[data-status='late'] {
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.footer {
+  align-items: center;
+  color: var(--dsw-alias-label-tertiary);
+  display: flex;
+  font-size: 11px;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
+.link {
+  background: transparent;
+  border: 0;
+  color: var(--dsw-alias-link);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  text-align: left;
+}
+
+.link:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.classLink {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.classLink:hover {
+  text-decoration: underline;
+}
+
+.courseLink {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.courseLink:hover {
+  color: var(--dsw-alias-link);
+}
