@@ -47,6 +47,10 @@ export function prepareDevelopmentApp(options: DevelopmentAppOptions): string {
     }
     writeFileSync(executable, launcher, { mode: 0o755 })
     writeFileSync(stamp, identity, { mode: 0o600 })
+    // Finder and iCloud (fileprovider) metadata on the copied bundle makes
+    // codesign refuse with "resource fork, Finder information, or similar
+    // detritus not allowed"; clear it immediately before signing.
+    execFileSync('/usr/bin/xattr', ['-cr', bundle], { stdio: 'pipe' })
     execFileSync('/usr/bin/codesign', ['--force', '--deep', '--sign', '-', bundle], { stdio: 'pipe' })
   }
   execFileSync('/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister', ['-f', bundle])
