@@ -98,6 +98,10 @@
     - id: plugin-inventory
       name: '@deepseek-ai/dsh-host-plugin-inventory'
 
+    # Install npm skill sets into the user skills root, over the client RPCs.
+    - id: skill-sets
+      name: '@deepseek-ai/dsh-skill-sets'
+
     # Session commands, cold reads, and live control over Typert Remote.
     - id: session-controller
       name: '@deepseek-ai/dsh-api-session-controller'
@@ -352,6 +356,10 @@
 
     - id: ui-skill
       name: '@deepseek-ai/dsh-client-ui-skill'
+
+    # Skills settings section: the installed skill inventory.
+    - id: ui-skills
+      name: '@deepseek-ai/dsh-client-ui-skills'
 
     # Memory settings section: knowledge workspaces, indexing, and search.
     - id: ui-memory

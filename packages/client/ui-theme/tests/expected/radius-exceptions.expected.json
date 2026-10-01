@@ -83,5 +83,11 @@
     ".keyBadge: border-radius: 10px",
     ".unbound: border-radius: 10px",
     ".recorder: border-radius: 10px"
+  ],
+  "ui-skills/src/client/SkillsSection.module.css": [
+    ".search: border-radius: 8px",
+    ".item: border-radius: 10px",
+    ".install: border-radius: 8px",
+    ".remove: border-radius: 8px"
   ]
 }

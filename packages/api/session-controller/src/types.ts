@@ -260,6 +260,31 @@ export interface SkillListValue {
   readonly skills: readonly SkillEntry[]
 }
 
+/** One installed skill as a management surface sees it. */
+export interface SkillInventoryEntry {
+  /** Absolute instruction-file path when a filesystem provider supplied it. */
+  readonly path?: string
+  /** Kebab-case identifier used to address the skill. */
+  readonly name: string
+  /** Short routing description. */
+  readonly description: string
+  /** Optional extra routing guidance. */
+  readonly whenToUse?: string
+  /** Discovery source that produced the winning skill. */
+  readonly source: string
+  /** Provider that owns the skill body. */
+  readonly provider: string
+  /** Whether model-facing catalogs include this skill. */
+  readonly modelInvocable: boolean
+  /** Whether human-facing command catalogs include this skill. */
+  readonly userInvocable: boolean
+}
+
+/** Every skill the host composition can see, for management surfaces. */
+export interface SkillInventoryValue {
+  readonly skills: readonly SkillInventoryEntry[]
+}
+
 /** Session list request. */
 export interface SessionListRequest {
   readonly cursor?: string

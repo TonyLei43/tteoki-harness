@@ -259,6 +259,14 @@ Host service backing `ctx.remote.skills` without activating a cold Agent.
  * @throws RemoteError when the Session cannot be inspected or no registry can serve it.
  */
 @Remote async list(request: SkillListRequest, signal: AbortSignal): Promise<SkillListValue>
+
+/**
+ * List every skill in the host layer, including model-only skills, for
+ * management surfaces that are not bound to one Session.
+ * @returns the host composition's installed skill inventory.
+ * @throws RemoteError when no skill registry is mounted.
+ */
+@Remote async inventory(): Promise<SkillInventoryValue>
 ```
 
 Source: [`packages/api/session-controller/src/skill-catalog.ts`](../../packages/api/session-controller/src/skill-catalog.ts)

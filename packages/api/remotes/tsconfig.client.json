@@ -48,6 +48,9 @@
       "path": "../../host/plugin-inventory"
     },
     {
+      "path": "../../skill/skill-sets"
+    },
+    {
       "path": "../../interaction/commands"
     },
     {

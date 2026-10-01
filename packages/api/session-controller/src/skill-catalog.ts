@@ -6,7 +6,7 @@ import { SessionQueryError } from '@deepseek-ai/dsh-session-query'
 import { isUserInvocable } from '@deepseek-ai/dsh-skill'
 import type { ScopeKey } from '@deepseek-ai/dsh-scope'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
-import type { SkillListRequest, SkillListValue } from './types.ts'
+import type { SkillListRequest, SkillListValue, SkillInventoryValue } from './types.ts'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -86,6 +86,45 @@ export class SessionSkillCatalog extends TypertRemoteService {
       }
     } catch (error: unknown) {
       throw new RemoteError('gateway/internal', `skill listing failed: ${String(error)}`, {})
+    }
+  }
+
+  /**
+   * List every skill in the host layer, including model-only skills, for
+   * management surfaces that are not bound to one Session.
+   * @returns the host composition's installed skill inventory.
+   * @throws RemoteError when no skill registry is mounted.
+   */
+  @Remote
+  async inventory(): Promise<SkillInventoryValue> {
+    const registry = this.ctx.get('skills')
+    if (registry === undefined) {
+      throw new RemoteError(
+        'gateway/internal',
+        'skill registry is absent: the host composition does not mount @deepseek-ai/dsh-skill',
+        {},
+      )
+    }
+    try {
+      // A management surface has no Session, so read the default standing
+      // preset's scope; that is the layer chain an agent actually sees
+      // (global plus the preset's own discovery roots).
+      await using lease = await this.scopeFor(undefined)
+      const skills = await registry.list(lease?.key === undefined ? {} : { scope: lease.key })
+      return {
+        skills: skills.map(skill => ({
+          name: skill.name,
+          description: skill.description,
+          ...skill.whenToUse === undefined ? {} : { whenToUse: skill.whenToUse },
+          source: skill.source,
+          provider: skill.provider,
+          modelInvocable: skill.invocation.modelInvocable,
+          userInvocable: skill.invocation.userInvocable,
+          ...skill.path === undefined ? {} : { path: skill.path },
+        })),
+      }
+    } catch (error: unknown) {
+      throw new RemoteError('gateway/internal', `skill inventory failed: ${String(error)}`, {})
     }
   }
 
