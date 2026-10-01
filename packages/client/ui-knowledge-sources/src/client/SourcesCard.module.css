@@ -1,0 +1,138 @@
+.card {
+  background: var(--dsw-alias-bg-layer-1);
+  border: var(--tteoki-card-border-width, 0.5px) solid var(--tteoki-card-border, var(--dsw-alias-border-l2));
+  border-radius: var(--tteoki-card-radius, 10px);
+  box-shadow: var(--tteoki-card-shadow, none);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 12px;
+}
+
+.head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.title {
+  color: var(--dsw-alias-label-secondary);
+  font-family: var(--tteoki-font-display, inherit);
+  font-size: var(--tteoki-card-title-size, 11px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chip {
+  align-items: baseline;
+  background: var(--dsw-alias-bg-layer-2);
+  border: 1px solid var(--tteoki-card-border, var(--dsw-alias-border-l2));
+  border-radius: 999px;
+  color: var(--dsw-alias-label-primary);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 12px;
+  gap: 6px;
+  max-width: 320px;
+  padding: 3px 10px 3px 4px;
+}
+
+.chip:hover,
+.chip[aria-expanded='true'] {
+  background: var(--dsw-alias-state-business-tertiary);
+}
+
+.label {
+  background: var(--dsw-alias-brand-primary);
+  border-radius: 999px;
+  color: var(--dsw-alias-label-primary-foreground, #fff);
+  flex: none;
+  font-family: var(--tteoki-font-display, inherit);
+  font-size: 11px;
+  padding: 0 6px;
+}
+
+.name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.folder {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+  margin: 0;
+}
+
+.detail {
+  border-top: 1px dashed var(--tteoki-card-border, var(--dsw-alias-border-l2));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.detailHead {
+  align-items: baseline;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.path {
+  color: var(--dsw-alias-label-tertiary);
+  font-family: var(--ds-font-family-code);
+  font-size: 11px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.passage {
+  border-left: 3px solid var(--dsw-alias-brand-primary);
+  max-height: 240px;
+  overflow: auto;
+  padding-left: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+.link {
+  background: transparent;
+  border: 0;
+  color: var(--dsw-alias-link);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+}
+
+.page {
+  background: #fff;
+  border: 1px solid var(--tteoki-card-border, var(--dsw-alias-border-l2));
+  border-radius: 6px;
+  max-width: min(100%, 640px);
+}

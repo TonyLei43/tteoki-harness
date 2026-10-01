@@ -353,10 +353,19 @@
     - id: ui-skill
       name: '@deepseek-ai/dsh-client-ui-skill'
 
+    # Memory settings section: knowledge workspaces, indexing, and search.
+    - id: ui-memory
+      name: '@deepseek-ai/dsh-client-ui-memory'
+
     # Native orchestrator board: a live DSH-session board and one auto-router
     # over the session/agentPresets Remote namespaces.
     - id: ui-orchestrator
       name: '@deepseek-ai/dsh-client-ui-orchestrator'
+
+    # Sources card under every grounded answer: the notes the
+    # knowledge-context plugin gave the model, with page previews.
+    - id: ui-knowledge-sources
+      name: '@deepseek-ai/dsh-client-ui-knowledge-sources'
 
     # Prices page: the off-peak clock, the DeepSeek table, and the OpenRouter
     # catalog over the prices Remote namespace mounted above.
@@ -576,6 +585,13 @@
         default: standard
     - id: agent-models
       name: '@deepseek-ai/dsh-agent-models'
+    - id: memory
+      name: '@deepseek-ai/dsh-memory'
+    # Ingestion extractors: PDF text layers and Notability `.nbn` packages.
+    - id: memory-pdf
+      name: '@deepseek-ai/dsh-memory-pdf'
+    - id: memory-notability
+      name: '@deepseek-ai/dsh-memory-notability'
 
     # Static DeepSeek rate card with its off-peak clock, plus a cached
     # normalized OpenRouter catalog; the prices Remote namespace the Web

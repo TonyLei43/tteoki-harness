@@ -62,6 +62,7 @@
     "@deepseek-ai/dsh-agent": "workspace:*",
     "@deepseek-ai/dsh-agent-preset-registry": "workspace:*",
     "@deepseek-ai/dsh-agent-models": "workspace:*",
+    "@deepseek-ai/dsh-memory": "workspace:*",
     "@deepseek-ai/dsh-prices": "workspace:*",
     "@deepseek-ai/dsh-api-gateway": "workspace:*",
     "@deepseek-ai/dsh-api-job-controller": "workspace:*",

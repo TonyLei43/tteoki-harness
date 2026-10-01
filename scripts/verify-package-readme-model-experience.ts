@@ -131,6 +131,7 @@ const SENTENCE_MODEL_EXPERIENCE: Readonly<Record<string, SentenceContract>> = {
   'packages/client/ui-permission-presets': { kind: 'indirect', reason: 'The picker submits the host /permission command; the knob events it appends own the model-visible effect through the sandbox/approval consumers.' },
   'packages/client/ui-settings-plugins': { kind: 'none', reason: 'Browser-side settings surface; registers no model surface.' },
   'packages/client/ui-agents': { kind: 'none', reason: 'Browser-side settings surface; registers no model surface.' },
+  'packages/client/ui-memory': { kind: 'none', reason: 'Browser-side settings surface; registers no model surface.' },
   'packages/client/ui-orchestrator': { kind: 'none', reason: 'Browser-side board and router over the session/agentPresets namespaces; registers no model surface.' },
   'packages/client/ui-prices': { kind: 'none', reason: 'Browser-side prices page over the prices namespace; registers no model surface.' },
   'packages/preset/agent-models': { kind: 'none', reason: 'Host binding store read at agent creation; registers no model surface.' },

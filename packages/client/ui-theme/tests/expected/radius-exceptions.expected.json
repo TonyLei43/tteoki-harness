@@ -3,6 +3,13 @@
     ".item: border-radius: 10px",
     ".select: border-radius: 8px"
   ],
+  "ui-memory/src/client/MemorySection.module.css": [
+    ".input, .select, .textarea: border-radius: 8px",
+    ".button: border-radius: 8px",
+    ".secondary: border-radius: 8px",
+    ".workspace: border-radius: 10px",
+    ".hit: border-radius: 10px"
+  ],
   "ui-orchestrator/src/client/OrchestratorBoard.module.css": [
     ".routerInput: border-radius: 8px",
     ".routerSend: border-radius: 8px",

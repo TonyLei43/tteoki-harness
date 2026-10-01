@@ -1557,6 +1557,33 @@ export interface Config {
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-jobs-local -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-knowledge-context -->
+<a id="deepseek-aidsh-knowledge-context"></a>
+
+## `@deepseek-ai/dsh-knowledge-context`
+
+- `inject`: `memory`
+- `source`: [`packages/memory/knowledge-context/src/index.ts:62`](../packages/memory/knowledge-context/src/index.ts)
+
+```ts config-catalog
+/** Grounding policy. */
+export interface Config {
+  /** Knowledge bases searched; `*` searches every one. */
+  knowledgeBases: string[]
+  /** Passages retrieved per turn. */
+  topK?: number
+  /** Minimum cosine similarity for a passage to be included. */
+  minScore?: number
+  /** Characters of each passage given to the model. */
+  maxPassageChars?: number
+  /** Whether the model is told to confirm with outside sources (needs web tools in the same agent). */
+  verify?: boolean
+  /** Whether the model is told to connect ideas and show them with `mind_map` (needs tool-mind-map in the same agent). */
+  mindMap?: boolean
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-knowledge-context -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-llm-deepseek-account -->
 <a id="deepseek-aidsh-llm-deepseek-account"></a>
 
@@ -2080,6 +2107,23 @@ export interface ReconnectConfig {
 }
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-mcp-client -->
+
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-memory -->
+<a id="deepseek-aidsh-memory"></a>
+
+## `@deepseek-ai/dsh-memory`
+
+- `inject`: `typert`
+- `source`: [`packages/memory/memory/src/index.ts:65`](../packages/memory/memory/src/index.ts)
+
+```ts config-catalog
+/** Deployment policy for the memory layer. */
+export interface Config {
+  /** Harness home override; defaults to the resolved DSH home. */
+  readonly home?: string
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-memory -->
 
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-message-feedback -->
 <a id="deepseek-aidsh-message-feedback"></a>
@@ -3649,6 +3693,40 @@ export interface Config {
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-tool-lsp -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-tool-memory -->
+<a id="deepseek-aidsh-tool-memory"></a>
+
+## `@deepseek-ai/dsh-tool-memory`
+
+- `inject`: `tools` · `memory`
+- `source`: [`packages/memory/tool-memory/src/index.ts:18`](../packages/memory/tool-memory/src/index.ts)
+
+```ts config-catalog
+/** Which knowledge bases this agent reaches. */
+export interface Config {
+  /** Knowledge-base ids; `['*']` reaches every configured knowledge base, including ones added later. */
+  knowledgeBases: string[]
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-tool-memory -->
+
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-tool-mind-map -->
+<a id="deepseek-aidsh-tool-mind-map"></a>
+
+## `@deepseek-ai/dsh-tool-mind-map`
+
+- `inject`: `tools`
+- `source`: [`packages/memory/tool-mind-map/src/index.ts:18`](../packages/memory/tool-mind-map/src/index.ts)
+
+```ts config-catalog
+/** Map size limits. */
+export interface Config {
+  /** Most concepts in one map. */
+  maxConcepts?: number
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-tool-mind-map -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-tool-present -->
 <a id="deepseek-aidsh-tool-present"></a>
 
@@ -4340,7 +4418,9 @@ export interface Config {
 | `@deepseek-ai/dsh-client-ui-goal` | — | [`packages/client/ui-goal/src/index.ts`](../packages/client/ui-goal/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-input-trigger` | — | [`packages/client/ui-input-trigger/src/index.ts`](../packages/client/ui-input-trigger/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-jobs` | — | [`packages/client/ui-jobs/src/index.ts`](../packages/client/ui-jobs/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-knowledge-sources` | — | [`packages/client/ui-knowledge-sources/src/index.ts`](../packages/client/ui-knowledge-sources/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-layout` | — | [`packages/client/ui-layout/src/index.ts`](../packages/client/ui-layout/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-memory` | — | [`packages/client/ui-memory/src/index.ts`](../packages/client/ui-memory/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-message-feedback` | — | [`packages/client/ui-message-feedback/src/index.ts`](../packages/client/ui-message-feedback/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-model-selection` | — | [`packages/client/ui-model-selection/src/index.ts`](../packages/client/ui-model-selection/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-open-in-app` | — | [`packages/client/ui-open-in-app/src/index.ts`](../packages/client/ui-open-in-app/src/index.ts) |
@@ -4395,6 +4475,8 @@ export interface Config {
 | `@deepseek-ai/dsh-llm` | — | [`packages/llm/llm/src/index.ts`](../packages/llm/llm/src/index.ts) |
 | `@deepseek-ai/dsh-lsp` | — | [`packages/lsp/lsp/src/index.ts`](../packages/lsp/lsp/src/index.ts) |
 | `@deepseek-ai/dsh-mcp-resources` | `tools` | [`packages/mcp/mcp-resources/src/index.ts`](../packages/mcp/mcp-resources/src/index.ts) |
+| `@deepseek-ai/dsh-memory-notability` | `memory` | [`packages/memory/memory-notability/src/index.ts`](../packages/memory/memory-notability/src/index.ts) |
+| `@deepseek-ai/dsh-memory-pdf` | `memory` | [`packages/memory/memory-pdf/src/index.ts`](../packages/memory/memory-pdf/src/index.ts) |
 | `@deepseek-ai/dsh-sandbox-ssh` | `ssh` | [`packages/ssh/sandbox-ssh/src/index.ts`](../packages/ssh/sandbox-ssh/src/index.ts) |
 | `@deepseek-ai/dsh-session` | — | [`packages/core/session/src/index.ts`](../packages/core/session/src/index.ts) |
 | `@deepseek-ai/dsh-session-checkpoint-policy` | `llm` · `sessionPersistence` · `sessions` · `tools` | [`packages/session/session-checkpoint-policy/src/index.ts`](../packages/session/session-checkpoint-policy/src/index.ts) |
