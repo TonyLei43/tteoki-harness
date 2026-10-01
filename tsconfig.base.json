@@ -352,6 +352,7 @@
       "@deepseek-ai/dsh-memory-notability": ["./packages/memory/memory-notability/src"],
       "@deepseek-ai/dsh-memory-pdf": ["./packages/memory/memory-pdf/src"],
       "@deepseek-ai/dsh-tool-agenda": ["./packages/external/tool-agenda/src"],
+      "@deepseek-ai/dsh-tteoki": ["./packages/bundle/tteoki/src"],
       "@deepseek-ai/dsh-tool-memory": ["./packages/memory/tool-memory/src"],
       "@deepseek-ai/dsh-knowledge-context": ["./packages/memory/knowledge-context/src"],
       "@deepseek-ai/dsh-tool-mind-map": ["./packages/memory/tool-mind-map/src"],

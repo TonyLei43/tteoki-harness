@@ -403,6 +403,9 @@ importers:
       '@deepseek-ai/dsh-tool-workspace-dependencies':
         specifier: workspace:*
         version: link:../../packages/skill/tool-workspace-dependencies
+      '@deepseek-ai/dsh-tteoki':
+        specifier: workspace:*
+        version: link:../../packages/bundle/tteoki
       '@deepseek-ai/dsh-web-app':
         specifier: workspace:*
         version: link:../../packages/bundle/web-app
@@ -2349,6 +2352,34 @@ importers:
       '@deepseek-ai/dsh-tools':
         specifier: workspace:*
         version: link:../../core/tools
+    devDependencies:
+      '@deepseek-ai/cordis':
+        specifier: workspace:~
+        version: link:../../../vendor/cordis
+
+  packages/bundle/tteoki:
+    dependencies:
+      '@deepseek-ai/dsh-cmdline':
+        specifier: workspace:*
+        version: link:../../boot/cmdline
+      '@deepseek-ai/dsh-connectors':
+        specifier: workspace:*
+        version: link:../../external/connectors
+      '@deepseek-ai/dsh-memory':
+        specifier: workspace:*
+        version: link:../../memory/memory
+      '@deepseek-ai/dsh-memory-notability':
+        specifier: workspace:*
+        version: link:../../memory/memory-notability
+      '@deepseek-ai/dsh-memory-pdf':
+        specifier: workspace:*
+        version: link:../../memory/memory-pdf
+      '@deepseek-ai/dsh-worktrees':
+        specifier: workspace:*
+        version: link:../../workspace/worktrees
+      commander:
+        specifier: ^15.0.0
+        version: 15.0.0
     devDependencies:
       '@deepseek-ai/cordis':
         specifier: workspace:~

@@ -1,0 +1,30 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types"
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "../../../vendor/cordis"
+    },
+    {
+      "path": "../../boot/cmdline"
+    },
+    {
+      "path": "../../external/connectors"
+    },
+    {
+      "path": "../../memory/memory"
+    },
+    {
+      "path": "../../memory/memory-notability"
+    },
+    {
+      "path": "../../workspace/worktrees"
+    }
+  ]
+}

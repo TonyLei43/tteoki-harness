@@ -348,6 +348,7 @@
     { "path": "./packages/external/connectors" },
     { "path": "./packages/external/lectures" },
     { "path": "./packages/external/tool-agenda" },
+    { "path": "./packages/bundle/tteoki" },
     { "path": "./packages/external/prices" },
     { "path": "./packages/skill/tool-skill" },
     { "path": "./packages/interaction/tool-ask-user" },
