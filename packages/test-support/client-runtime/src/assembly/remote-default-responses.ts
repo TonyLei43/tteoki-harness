@@ -37,7 +37,7 @@ export const remoteDefaultResponses: RemoteTable = {
     // ui-agenda Calendar, Upcoming, and Assignments widgets on Home.
     'connectors/agenda': ok({ items: [] }),
     'connectors/status': ok({ connectors: [] }),
-    // ui-memory's panel on first load.
+    // ui-workbench `statusFacts` at boot and ui-memory's panel on first load.
     'memory/status': ok({ documents: 0, chunks: 0, entities: 0, relations: 0, collections: [], failures: [] }),
     // ui-lectures quiz widget on Home.
     'lectures/status': ok({ enabled: false, lectures: [] }),

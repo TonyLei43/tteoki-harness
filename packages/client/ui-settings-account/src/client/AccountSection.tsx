@@ -58,8 +58,6 @@ export interface AccountSectionInjected {
    * @returns after both reads settle.
    */
   refreshAccount: () => Promise<void>
-  /** Open the external support questionnaire with the current build and browser environment. */
-  contactUs: () => void
   /** Open or dismiss the login dialog. */
   showLogin: (visible: boolean) => void
   /** Claim dialog ownership for the onboarding step. */

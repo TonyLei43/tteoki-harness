@@ -72,6 +72,9 @@
       "path": "../../external/prices"
     },
     {
+      "path": "../../workspace/worktrees"
+    },
+    {
       "path": "../../external/connectors"
     },
     {

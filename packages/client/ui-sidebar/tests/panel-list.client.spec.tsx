@@ -32,7 +32,7 @@ afterEach(async () => {
   }
 })
 
-async function bench(collapsed = false) {
+async function bench(collapsed = false, others: string[] = []) {
   const runtime = await SlotTestRuntime.create()
   runtimes.add(runtime)
   const locale = new LocaleRuntime(runtime.ctx)
@@ -75,7 +75,16 @@ async function bench(collapsed = false) {
     sidebar: { kind: 'single', scope: 'root' },
     main: { kind: 'keyed', scope: 'root' },
   }, Frame)
-  const sidebar = await runtime.mount({ inject: [...inject], apply })
+  const sidebar = await runtime.mount({
+    inject: [...inject],
+    apply(ctx: Context) {
+      if (others.length > 0) {
+        const form = { getSnapshot: () => ({ value: { others } }), subscribe: () => () => {} }
+        ctx.provide('configForms', { get: (namespace: string) => { expect(namespace).toBe('ui-sidebar'); return form } } as never)
+      }
+      apply(ctx)
+    },
+  })
   const view = runtime.renderRoot()
   return { runtime, locale, layout, sidebar, view }
 }
@@ -181,6 +190,24 @@ describe('sidebar global panels', () => {
     await mountPanels(runtime, locale, 20)
     const navigation = await view.findByRole('navigation', { name: 'Global panels' })
     expect(within(navigation).getAllByRole('button').map(row => row.textContent)).toEqual(['Alpha panel', 'Beta panel'])
+  })
+
+  it('folds configured panels under Others and opens the group for its active panel', async () => {
+    const { runtime, locale, view } = await bench(false, [BETA])
+    await mountPanels(runtime, locale)
+    const navigation = await view.findByRole('navigation', { name: 'Global panels' })
+    expect(within(navigation).getAllByRole('button').map(row => row.textContent)).toEqual(['Alpha panel', 'Others'])
+    const others = within(navigation).getByRole('button', { name: 'Others' })
+    expect(others.getAttribute('aria-expanded')).toBe('false')
+    fireEvent.click(others)
+    expect(within(navigation).getAllByRole('button').map(row => row.textContent)).toEqual(['Alpha panel', 'Others', 'Beta panel'])
+    fireEvent.click(within(navigation).getByRole('button', { name: 'Beta panel' }))
+    fireEvent.click(others)
+    // The group stays open while it holds the active panel.
+    expect(others.getAttribute('aria-expanded')).toBe('true')
+    // Closed while active, it folds once another panel is selected.
+    fireEvent.click(within(navigation).getByRole('button', { name: 'Alpha panel' }))
+    expect(within(navigation).queryByRole('button', { name: 'Beta panel' })).toBeNull()
   })
 
   it('selects registered main content and keeps a repeated selection active', async () => {

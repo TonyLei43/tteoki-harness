@@ -1,0 +1,121 @@
+.scene {
+  --pixel: 4px;
+  /* Home lays out as a flex column; the banner keeps its height beside tall cards. */
+  flex: none;
+  background: var(--tteoki-sky-day, #FDE6D2);
+  border: 2px solid var(--tteoki-card-border, var(--dsw-alias-border-l2));
+  border-radius: var(--tteoki-card-radius, 12px);
+  box-shadow: var(--tteoki-card-shadow, none);
+  height: 112px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scene[data-time='night'] {
+  background: var(--tteoki-sky-night, #3A3150);
+}
+
+.sky {
+  height: 100%;
+  image-rendering: pixelated;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.grass {
+  background:
+    linear-gradient(90deg, var(--tteoki-grass-dark, #86B56E) 50%, transparent 50%) 0 0 / 16px var(--pixel) repeat-x,
+    var(--tteoki-grass, #A8D08D);
+  bottom: 0;
+  height: 24px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.sun,
+.moon {
+  position: absolute;
+  right: 9%;
+  top: 16px;
+}
+
+.cloud {
+  position: absolute;
+  animation: drift 60s linear infinite;
+}
+
+.cloudA {
+  left: 18%;
+  top: 18px;
+}
+
+.cloudB {
+  animation-duration: 90s;
+  left: 52%;
+  opacity: 0.8;
+  top: 44px;
+}
+
+.star {
+  animation: twinkle 2.4s steps(2, jump-none) infinite;
+  position: absolute;
+}
+
+.bunny {
+  animation: bob 1.6s steps(2, jump-none) infinite;
+  bottom: 16px;
+  height: 64px;
+  left: 6%;
+  position: absolute;
+  width: 64px;
+}
+
+.bunny > svg {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.blink {
+  animation: blink 5s steps(1, jump-none) infinite;
+  opacity: 0;
+}
+
+.carrot {
+  bottom: 18px;
+  left: calc(6% + 72px);
+  position: absolute;
+}
+
+@keyframes bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-1 * var(--pixel))); }
+}
+
+@keyframes blink {
+  0%, 94% { opacity: 0; }
+  95%, 100% { opacity: 1; }
+}
+
+@keyframes twinkle {
+  from { opacity: 1; }
+  to { opacity: 0.35; }
+}
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  50% { transform: translateX(40px); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bunny,
+  .blink,
+  .star,
+  .cloud {
+    animation: none;
+  }
+}

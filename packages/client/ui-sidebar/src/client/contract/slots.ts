@@ -82,6 +82,8 @@ export interface SidebarPanelMetadata {
   order: number
   /** Row title and accessible name: resolved label, or the id when omitted. */
   label: string
+  /** Whether the row is folded under the Others row (listed in the plugin's `others` config). */
+  grouped: boolean
 }
 
 /**

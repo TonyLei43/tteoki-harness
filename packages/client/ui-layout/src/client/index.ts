@@ -110,6 +110,17 @@ declare module '@deepseek-ai/dsh-client-ui-slots' {
      * the lights or the controls.
      */
     'shell.leading': { kind: 'single'; scope: 'root' }
+    /**
+     * Tab row across the top of the centre column, above every main panel,
+     * such as open-session tabs. Hidden while no entry renders anything.
+     */
+    'shell.tabs': { kind: 'list'; scope: 'root' }
+    /**
+     * Status row along the bottom of the centre column, such as sync, index,
+     * and deadline indicators; entries order among themselves. Hidden while no
+     * entry renders anything.
+     */
+    'shell.status': { kind: 'list'; scope: 'root' }
   }
 }
 
@@ -177,6 +188,8 @@ export function apply(ctx: ClientContext): void {
         'rightbar': { kind: 'single', scope: 'root' },
         'shell.overlay': { kind: 'list', scope: 'root' },
         'shell.leading': { kind: 'single', scope: 'root' },
+        'shell.tabs': { kind: 'list', scope: 'root' },
+        'shell.status': { kind: 'list', scope: 'root' },
       },
       store,
     }, AppFrame)

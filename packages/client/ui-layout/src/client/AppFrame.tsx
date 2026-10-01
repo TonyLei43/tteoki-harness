@@ -27,7 +27,7 @@ import css from './AppFrame.module.css'
 /** Full composed props: runtime share + child-slot render share + store share. */
 export type AppFrameProps =
   & PropsRuntime<'root'>
-  & PropsRenderSlots<'sidebar' | 'main' | 'rightbar' | 'shell.overlay' | 'shell.leading'>
+  & PropsRenderSlots<'sidebar' | 'main' | 'rightbar' | 'shell.overlay' | 'shell.leading' | 'shell.tabs' | 'shell.status'>
   & PropsStore<ReturnType<typeof createLayoutStore>>
   & PropsLocale<'common'>
 
@@ -253,6 +253,8 @@ export function AppFrame({
   // row (ui-sidebar). AppFrame.module.css publishes the matching
   // --dsh-frame-leading-clearance under the same collapsed condition.
   const leading = useMemo(() => renderSlot('shell.leading', {}), [renderSlot])
+  const tabs = useMemo(() => renderSlot('shell.tabs', {}), [renderSlot])
+  const status = useMemo(() => renderSlot('shell.status', {}), [renderSlot])
   const leadingMounted = darwin && sidebarCollapsed
 
   return (
@@ -281,7 +283,11 @@ export function AppFrame({
         {sidebar}
       </div>
       <>
-        <CenterColumn>{main}</CenterColumn>
+        <CenterColumn>
+          <div className={css.shellTabs} data-shell-tabs>{tabs}</div>
+          <div className={css.centerBody}>{main}</div>
+          <div className={css.shellStatus} data-shell-status>{status}</div>
+        </CenterColumn>
         <RightbarColumn>
           {renderSlot('rightbar', { width: normal.rightbar, viewportWidth: viewport, canShow: normal.rightbar > 0 })}
         </RightbarColumn>
