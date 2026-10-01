@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-25-prices-off-peak-clock.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/proposed/feature/2026-09-25-prices-off-peak-clock.md
+/agent-note-prices-catalog-and-deepseek-off-peak-clock:
+  en: 6d0dfdde1782adb2
+  zh: 268cd368999c8be3
+/agent-note-prices-catalog-and-deepseek-off-peak-clock/problem:
+  en: 3c918259abf6a15d
+  zh: 5416e2ea447ba656
+/agent-note-prices-catalog-and-deepseek-off-peak-clock/proposal:
+  en: df45b247dd682eee
+  zh: 36bdc8ca404bf776
+/agent-note-prices-catalog-and-deepseek-off-peak-clock/alternatives-considered:
+  en: bc6725e06cea273e
+  zh: 2ca10410ece58d61
+/agent-note-prices-catalog-and-deepseek-off-peak-clock/acceptance-criteria:
+  en: 6ba64c619a7d9a4d
+  zh: c0d37f0d35db2756
+/agent-note-prices-catalog-and-deepseek-off-peak-clock/risks:
+  en: c171c25eae8672e8
+  zh: 3cfee4d5bda0031a

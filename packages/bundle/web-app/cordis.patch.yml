@@ -353,6 +353,11 @@
     - id: ui-skill
       name: '@deepseek-ai/dsh-client-ui-skill'
 
+    # Prices page: the off-peak clock, the DeepSeek table, and the OpenRouter
+    # catalog over the prices Remote namespace mounted above.
+    - id: ui-prices
+      name: '@deepseek-ai/dsh-client-ui-prices'
+
     - id: ui-subagent
       name: '@deepseek-ai/dsh-client-ui-subagent'
 
@@ -560,3 +565,9 @@
       name: '@deepseek-ai/dsh-agent-preset-registry'
       config:
         default: standard
+
+    # Static DeepSeek rate card with its off-peak clock, plus a cached
+    # normalized OpenRouter catalog; the prices Remote namespace the Web
+    # Prices page (ui-prices below) drives.
+    - id: prices
+      name: '@deepseek-ai/dsh-prices'

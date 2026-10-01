@@ -1,0 +1,49 @@
+/* Prices settings section: heading, summary, one state line, one action. */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heading {
+  color: var(--dsw-alias-label-primary);
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+}
+
+.intro,
+.notice {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.notice[role='alert'] {
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.state {
+  color: var(--dsw-alias-label-primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  margin: 0;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  background: var(--dsw-alias-button-primary-fill);
+  border: 0;
+  border-radius: 8px;
+  color: var(--dsw-alias-label-primary-foreground);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 14px;
+}

@@ -1,4 +1,13 @@
 {
+  "ui-prices/src/client/PricesBoard.module.css": [
+    ".clock: border-radius: 12px",
+    ".input: border-radius: 8px",
+    ".refresh: border-radius: 8px",
+    ".models: border-radius: 10px"
+  ],
+  "ui-prices/src/client/PricesSection.module.css": [
+    ".button: border-radius: 8px"
+  ],
   "ui-schedule/src/client/ClockPicker.module.css": [
     ".option: border-radius: 10px"
   ],
