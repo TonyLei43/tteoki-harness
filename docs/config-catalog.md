@@ -119,6 +119,22 @@ export interface Config {
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-agent-loop -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-agent-models -->
+<a id="deepseek-aidsh-agent-models"></a>
+
+## `@deepseek-ai/dsh-agent-models`
+
+- `source`: [`packages/preset/agent-models/src/index.ts:26`](../packages/preset/agent-models/src/index.ts)
+
+```ts config-catalog
+/** Installer deployment policy. */
+export interface Config {
+  /** Harness home override; defaults to the resolved DSH home. */
+  readonly home?: string
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-agent-models -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-agent-preset -->
 <a id="deepseek-aidsh-agent-preset"></a>
 
@@ -4308,6 +4324,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-modules` | `loader` | [`packages/client/modules/src/index.ts`](../packages/client/modules/src/index.ts) |
 | `@deepseek-ai/dsh-client-resources` | — | [`packages/client/resources/src/index.ts`](../packages/client/resources/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-agent-preset` | — | [`packages/client/ui-agent-preset/src/index.ts`](../packages/client/ui-agent-preset/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-agents` | — | [`packages/client/ui-agents/src/index.ts`](../packages/client/ui-agents/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-approval` | — | [`packages/client/ui-approval/src/index.ts`](../packages/client/ui-approval/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-attachment` | — | [`packages/client/ui-attachment/src/index.ts`](../packages/client/ui-attachment/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-brand-official` | — | [`packages/client/ui-brand-official/src/index.ts`](../packages/client/ui-brand-official/src/index.ts) |
@@ -4325,6 +4342,7 @@ These load from a `cordis.yml` entry with no `config:` block; they declare no co
 | `@deepseek-ai/dsh-client-ui-message-feedback` | — | [`packages/client/ui-message-feedback/src/index.ts`](../packages/client/ui-message-feedback/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-model-selection` | — | [`packages/client/ui-model-selection/src/index.ts`](../packages/client/ui-model-selection/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-open-in-app` | — | [`packages/client/ui-open-in-app/src/index.ts`](../packages/client/ui-open-in-app/src/index.ts) |
+| `@deepseek-ai/dsh-client-ui-orchestrator` | — | [`packages/client/ui-orchestrator/src/index.ts`](../packages/client/ui-orchestrator/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-permission-presets` | — | [`packages/client/ui-permission-presets/src/index.ts`](../packages/client/ui-permission-presets/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-plan` | — | [`packages/client/ui-plan/src/index.ts`](../packages/client/ui-plan/src/index.ts) |
 | `@deepseek-ai/dsh-client-ui-prices` | — | [`packages/client/ui-prices/src/index.ts`](../packages/client/ui-prices/src/index.ts) |

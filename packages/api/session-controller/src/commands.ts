@@ -53,6 +53,7 @@ import type {
   SessionUpdateQueueValue,
   SessionRequestId,
 } from './types.ts'
+import { resolveAgentSelection } from './agent-models.ts'
 
 interface SessionReadState {
   readonly id: SessionId
@@ -266,7 +267,7 @@ export class SessionCommandController {
     const childId = brandString<SessionId>(`session-${randomUUID()}`)
     const composition = await this.agents.composeAgent(this.agents.presetForObservation(source))
     try {
-      const { provider, model } = this.ctx.agentDefaultModel.currentSelection()
+      const { provider, model } = resolveAgentSelection(this.ctx, composition.agentPreset)
       await this.ctx.agents.create({
         sessionId: childId,
         seed,

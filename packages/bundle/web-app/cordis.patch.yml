@@ -353,6 +353,11 @@
     - id: ui-skill
       name: '@deepseek-ai/dsh-client-ui-skill'
 
+    # Native orchestrator board: a live DSH-session board and one auto-router
+    # over the session/agentPresets Remote namespaces.
+    - id: ui-orchestrator
+      name: '@deepseek-ai/dsh-client-ui-orchestrator'
+
     # Prices page: the off-peak clock, the DeepSeek table, and the OpenRouter
     # catalog over the prices Remote namespace mounted above.
     - id: ui-prices
@@ -397,6 +402,10 @@
     # sessions created later. Absent a roster it renders nothing.
     - id: ui-agent-preset
       name: '@deepseek-ai/dsh-client-ui-agent-preset'
+
+    # Agents settings section: per-preset model bindings.
+    - id: ui-agents
+      name: '@deepseek-ai/dsh-client-ui-agents'
 
     # The Built-in plugins settings section: the navigation entry and the tab
     # row the inventory tab registers into. The official configuration pages
@@ -565,6 +574,8 @@
       name: '@deepseek-ai/dsh-agent-preset-registry'
       config:
         default: standard
+    - id: agent-models
+      name: '@deepseek-ai/dsh-agent-models'
 
     # Static DeepSeek rate card with its off-peak clock, plus a cached
     # normalized OpenRouter catalog; the prices Remote namespace the Web

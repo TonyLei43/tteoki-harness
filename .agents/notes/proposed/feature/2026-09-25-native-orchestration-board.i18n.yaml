@@ -1,0 +1,28 @@
+# Bilingual-pair consistency record for 2026-09-25-native-orchestration-board.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/proposed/feature/2026-09-25-native-orchestration-board.md
+/agent-note-native-dsh-orchestration-board:
+  en: 7a1b1ce88ba9d659
+  zh: 35d586bfe9f4ba66
+/agent-note-native-dsh-orchestration-board/problem:
+  en: eebe5e724777a250
+  zh: eabbb2ef75ecfb6f
+/agent-note-native-dsh-orchestration-board/proposal:
+  en: 80692a085b3e8c86
+  zh: 93ccbce1921153cc
+/agent-note-native-dsh-orchestration-board/router-classification:
+  en: 08cee4ec84e4d324
+  zh: 2ce776585d498b36
+/agent-note-native-dsh-orchestration-board/dispatch-and-model-binding:
+  en: dc934c7682a2ba9c
+  zh: 673a730284bcc199
+/agent-note-native-dsh-orchestration-board/alternatives-considered:
+  en: 5967a41a109a055f
+  zh: 9c2139bc9df22057
+/agent-note-native-dsh-orchestration-board/acceptance-criteria:
+  en: c243c5709d6465a7
+  zh: b83ccaf7eb6eba9d
+/agent-note-native-dsh-orchestration-board/risks:
+  en: f53fc0f89ba19858
+  zh: 5250174610a9c743

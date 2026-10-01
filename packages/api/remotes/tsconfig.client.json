@@ -60,6 +60,9 @@
       "path": "../../preset/agent-preset-registry"
     },
     {
+      "path": "../../preset/agent-models"
+    },
+    {
       "path": "../../external/prices"
     },
     {
